@@ -33,6 +33,7 @@
             timer1 = new System.Windows.Forms.Timer(components);
             pictureBox1 = new PictureBox();
             label1 = new Label();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -57,12 +58,23 @@
             label1.TabIndex = 1;
             label1.Text = "Aplicacion \r\nChida";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = SystemColors.ButtonHighlight;
+            label2.Location = new Point(12, 402);
+            label2.Name = "label2";
+            label2.Size = new Size(103, 15);
+            label2.TabIndex = 2;
+            label2.Text = "V1.2.1     2025     ©";
+            // 
             // SpashScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(753, 426);
+            Controls.Add(label2);
             Controls.Add(pictureBox1);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
@@ -81,5 +93,6 @@
         private System.Windows.Forms.Timer timer1;
         private PictureBox pictureBox1;
         private Label label1;
+        private Label label2;
     }
 }
