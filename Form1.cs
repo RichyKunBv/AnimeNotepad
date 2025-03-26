@@ -8,6 +8,7 @@ using static webiwabo.Form1.EditManager;
 
 namespace webiwabo
 {
+
     public partial class Form1 : Form
     {
         private FileManager fileManager;

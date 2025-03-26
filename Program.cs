@@ -1,16 +1,25 @@
+using System;
+using System.Windows.Forms;
+
 namespace webiwabo
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+
+            // Mostrar el SplashScreen
+            using (SpashScreen splash = new SpashScreen())
+            {
+                splash.Show();
+                Application.DoEvents(); // Permite actualizar la UI mientras se carga
+                System.Threading.Thread.Sleep(3000); // Espera 3 segundos (ajustable)
+                splash.Close();
+            }
+
+            // Luego abrir Form1
             Application.Run(new Form1());
         }
     }

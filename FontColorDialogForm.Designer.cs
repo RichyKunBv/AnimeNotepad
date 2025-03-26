@@ -20,6 +20,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FontDialogForm));
             tabControl1 = new TabControl();
             tabPageFont = new TabPage();
+            btnCancel = new Button();
+            pictureBox1 = new PictureBox();
+            btnOK = new Button();
             lblFont = new Label();
             cmbFonts = new ComboBox();
             lblSize = new Label();
@@ -28,17 +31,14 @@
             chkItalic = new CheckBox();
             chkUnderline = new CheckBox();
             tabPageAdvanced = new TabPage();
+            pictureBox2 = new PictureBox();
             pnlColorPreview = new Panel();
             btnSelectColor = new Button();
-            btnOK = new Button();
-            btnCancel = new Button();
-            pictureBox1 = new PictureBox();
-            pictureBox2 = new PictureBox();
             tabControl1.SuspendLayout();
             tabPageFont.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numSize).BeginInit();
             tabPageAdvanced.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
@@ -46,16 +46,18 @@
             // 
             tabControl1.Controls.Add(tabPageFont);
             tabControl1.Controls.Add(tabPageAdvanced);
-            tabControl1.Location = new Point(14, 14);
+            tabControl1.Location = new Point(0, 0);
             tabControl1.Margin = new Padding(4, 3, 4, 3);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(350, 231);
+            tabControl1.Size = new Size(378, 296);
             tabControl1.TabIndex = 0;
             // 
             // tabPageFont
             // 
+            tabPageFont.Controls.Add(btnCancel);
             tabPageFont.Controls.Add(pictureBox1);
+            tabPageFont.Controls.Add(btnOK);
             tabPageFont.Controls.Add(lblFont);
             tabPageFont.Controls.Add(cmbFonts);
             tabPageFont.Controls.Add(lblSize);
@@ -67,10 +69,41 @@
             tabPageFont.Margin = new Padding(4, 3, 4, 3);
             tabPageFont.Name = "tabPageFont";
             tabPageFont.Padding = new Padding(4, 3, 4, 3);
-            tabPageFont.Size = new Size(342, 203);
+            tabPageFont.Size = new Size(370, 268);
             tabPageFont.TabIndex = 0;
             tabPageFont.Text = "Fuente";
             tabPageFont.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            btnCancel.Location = new Point(282, 238);
+            btnCancel.Margin = new Padding(4, 3, 4, 3);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(88, 27);
+            btnCancel.TabIndex = 2;
+            btnCancel.Text = "Cancelar";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += BtnCancel_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(-4, 170);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(110, 102);
+            pictureBox1.TabIndex = 3;
+            pictureBox1.TabStop = false;
+            // 
+            // btnOK
+            // 
+            btnOK.Location = new Point(186, 238);
+            btnOK.Margin = new Padding(4, 3, 4, 3);
+            btnOK.Name = "btnOK";
+            btnOK.Size = new Size(88, 27);
+            btnOK.TabIndex = 1;
+            btnOK.Text = "Aceptar";
+            btnOK.UseVisualStyleBackColor = true;
+            btnOK.Click += BtnOK_Click;
             // 
             // lblFont
             // 
@@ -155,10 +188,19 @@
             tabPageAdvanced.Margin = new Padding(4, 3, 4, 3);
             tabPageAdvanced.Name = "tabPageAdvanced";
             tabPageAdvanced.Padding = new Padding(4, 3, 4, 3);
-            tabPageAdvanced.Size = new Size(342, 203);
+            tabPageAdvanced.Size = new Size(370, 268);
             tabPageAdvanced.TabIndex = 1;
             tabPageAdvanced.Text = "Avanzado";
             tabPageAdvanced.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(-4, 170);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(110, 102);
+            pictureBox2.TabIndex = 4;
+            pictureBox2.TabStop = false;
             // 
             // pnlColorPreview
             // 
@@ -180,53 +222,11 @@
             btnSelectColor.UseVisualStyleBackColor = true;
             btnSelectColor.Click += BtnSelectColor_Click;
             // 
-            // btnOK
-            // 
-            btnOK.Location = new Point(175, 254);
-            btnOK.Margin = new Padding(4, 3, 4, 3);
-            btnOK.Name = "btnOK";
-            btnOK.Size = new Size(88, 27);
-            btnOK.TabIndex = 1;
-            btnOK.Text = "Aceptar";
-            btnOK.UseVisualStyleBackColor = true;
-            btnOK.Click += BtnOK_Click;
-            // 
-            // btnCancel
-            // 
-            btnCancel.Location = new Point(270, 254);
-            btnCancel.Margin = new Padding(4, 3, 4, 3);
-            btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(88, 27);
-            btnCancel.TabIndex = 2;
-            btnCancel.Text = "Cancelar";
-            btnCancel.UseVisualStyleBackColor = true;
-            btnCancel.Click += BtnCancel_Click;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(0, 106);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(110, 102);
-            pictureBox1.TabIndex = 3;
-            pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(0, 106);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(110, 102);
-            pictureBox2.TabIndex = 4;
-            pictureBox2.TabStop = false;
-            // 
             // FontDialogForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(378, 294);
-            Controls.Add(btnCancel);
-            Controls.Add(btnOK);
             Controls.Add(tabControl1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Margin = new Padding(4, 3, 4, 3);
@@ -238,9 +238,9 @@
             tabControl1.ResumeLayout(false);
             tabPageFont.ResumeLayout(false);
             tabPageFont.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)numSize).EndInit();
             tabPageAdvanced.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
 

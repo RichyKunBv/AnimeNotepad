@@ -16,3 +16,4 @@ C:\Desarrollo\vs.projects\webiwabo\obj\Debug\net8.0-windows\webiwabo.genruntimec
 C:\Desarrollo\vs.projects\webiwabo\obj\Debug\net8.0-windows\ref\webiwabo.dll
 C:\Desarrollo\vs.projects\webiwabo\obj\Debug\net8.0-windows\webiwabo.Properties.Resources.resources
 C:\Desarrollo\vs.projects\webiwabo\obj\Debug\net8.0-windows\webiwabo.FontDialogForm.resources
+C:\Desarrollo\vs.projects\webiwabo\obj\Debug\net8.0-windows\webiwabo.SpashScreen.resources
