@@ -5,6 +5,7 @@ using System.Drawing.Printing;
 using System.Windows.Forms;
 using System.Reflection.Emit;
 using static webiwabo.Form1.EditManager;
+using System.Diagnostics;
 
 namespace webiwabo
 {
@@ -122,7 +123,7 @@ namespace webiwabo
         }
         private void mnHelpManual_Click(object sender, EventArgs e)
         {
-            helpManager.ShowAbout();
+            helpManager.Manual();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -390,10 +391,22 @@ namespace webiwabo
             {
                 public void ShowAbout()
                 {
-                    MessageBox.Show("Soy flojo voy a juntar ambos, total nadie lo va a leer de todos modos" +
-                        "\n\nAcerca de: Version preliminar de aplicacion tipo bloc de notas" +
-                        "\n\nManuela: es casi lo mismo que el Bloc de notas pero con monas chinas xddd",
-                        "Manual y Acerca De");
+                    acercade acercaDeForm = new acercade();
+                    acercaDeForm.ShowDialog();
+                }
+
+                public void Manual()
+                {
+                    string rutaHtml = Path.Combine(Application.StartupPath, "manual.html");
+
+                    if (File.Exists(rutaHtml))
+                    {
+                        Process.Start(new ProcessStartInfo(rutaHtml) { UseShellExecute = true });
+                    }
+                    else
+                    {
+                        MessageBox.Show("El manual no se encontró.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }

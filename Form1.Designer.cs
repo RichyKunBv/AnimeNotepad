@@ -403,7 +403,7 @@
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(0, 63);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(105, 266);
+            pictureBox1.Size = new Size(105, 143);
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
