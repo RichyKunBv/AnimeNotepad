@@ -103,7 +103,7 @@
             mnFileNew.Image = (Image)resources.GetObject("mnFileNew.Image");
             mnFileNew.Name = "mnFileNew";
             mnFileNew.ShortcutKeys = Keys.Control | Keys.N;
-            mnFileNew.Size = new Size(185, 22);
+            mnFileNew.Size = new Size(201, 38);
             mnFileNew.Text = "Niu";
             mnFileNew.Click += mnFileNew_Click;
             // 
@@ -112,7 +112,7 @@
             mnFileOpen.Image = (Image)resources.GetObject("mnFileOpen.Image");
             mnFileOpen.Name = "mnFileOpen";
             mnFileOpen.ShortcutKeys = Keys.Control | Keys.O;
-            mnFileOpen.Size = new Size(185, 22);
+            mnFileOpen.Size = new Size(201, 38);
             mnFileOpen.Text = "Abrido";
             mnFileOpen.Click += mnFileOpen_Click;
             // 
@@ -121,35 +121,35 @@
             mnFileSave.Image = (Image)resources.GetObject("mnFileSave.Image");
             mnFileSave.Name = "mnFileSave";
             mnFileSave.ShortcutKeys = Keys.Control | Keys.S;
-            mnFileSave.Size = new Size(185, 22);
+            mnFileSave.Size = new Size(201, 38);
             mnFileSave.Text = "Guardao";
             mnFileSave.Click += mnFileSave_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(182, 6);
+            toolStripSeparator1.Size = new Size(198, 6);
             // 
             // mnFilePrint
             // 
             mnFilePrint.Image = (Image)resources.GetObject("mnFilePrint.Image");
             mnFilePrint.Name = "mnFilePrint";
             mnFilePrint.ShortcutKeys = Keys.Control | Keys.P;
-            mnFilePrint.Size = new Size(185, 22);
+            mnFilePrint.Size = new Size(201, 38);
             mnFilePrint.Text = "Inprimir";
             mnFilePrint.Click += mnFilePrint_Click;
             // 
             // toolStripSeparator4
             // 
             toolStripSeparator4.Name = "toolStripSeparator4";
-            toolStripSeparator4.Size = new Size(182, 6);
+            toolStripSeparator4.Size = new Size(198, 6);
             // 
             // mnFileExit
             // 
             mnFileExit.Image = (Image)resources.GetObject("mnFileExit.Image");
             mnFileExit.Name = "mnFileExit";
             mnFileExit.ShortcutKeys = Keys.Control | Keys.Q;
-            mnFileExit.Size = new Size(185, 22);
+            mnFileExit.Size = new Size(201, 38);
             mnFileExit.Text = "Salir pa fuera";
             mnFileExit.Click += mnFileExit_Click;
             // 
@@ -164,7 +164,7 @@
             // 
             mnEditFont.Image = (Image)resources.GetObject("mnEditFont.Image");
             mnEditFont.Name = "mnEditFont";
-            mnEditFont.Size = new Size(291, 22);
+            mnEditFont.Size = new Size(307, 38);
             mnEditFont.Text = "Fuentes y Colores";
             mnEditFont.Click += mnEditFont_Click;
             // 
@@ -173,7 +173,7 @@
             mnEditCopy.Image = (Image)resources.GetObject("mnEditCopy.Image");
             mnEditCopy.Name = "mnEditCopy";
             mnEditCopy.ShortcutKeys = Keys.Control | Keys.C;
-            mnEditCopy.Size = new Size(291, 22);
+            mnEditCopy.Size = new Size(307, 38);
             mnEditCopy.Text = "Copion";
             mnEditCopy.Click += mnEditCopy_Click;
             // 
@@ -182,7 +182,7 @@
             mnEditPaste.Image = (Image)resources.GetObject("mnEditPaste.Image");
             mnEditPaste.Name = "mnEditPaste";
             mnEditPaste.ShortcutKeys = Keys.Control | Keys.V;
-            mnEditPaste.Size = new Size(291, 22);
+            mnEditPaste.Size = new Size(307, 38);
             mnEditPaste.Text = "Pegao";
             mnEditPaste.Click += mnEditPaste_Click;
             // 
@@ -191,21 +191,21 @@
             mnEditCut.Image = (Image)resources.GetObject("mnEditCut.Image");
             mnEditCut.Name = "mnEditCut";
             mnEditCut.ShortcutKeys = Keys.Control | Keys.X;
-            mnEditCut.Size = new Size(291, 22);
+            mnEditCut.Size = new Size(307, 38);
             mnEditCut.Text = "como la de akame ga kill (cortao)";
             mnEditCut.Click += mnEditCut_Click;
             // 
             // toolStripSeparator3
             // 
             toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(288, 6);
+            toolStripSeparator3.Size = new Size(304, 6);
             // 
             // mnEditSelectAll
             // 
             mnEditSelectAll.Image = (Image)resources.GetObject("mnEditSelectAll.Image");
             mnEditSelectAll.Name = "mnEditSelectAll";
             mnEditSelectAll.ShortcutKeys = Keys.Control | Keys.A;
-            mnEditSelectAll.Size = new Size(291, 22);
+            mnEditSelectAll.Size = new Size(307, 38);
             mnEditSelectAll.Text = "Toma todo";
             mnEditSelectAll.Click += mnEditSelectAll_Click;
             // 
@@ -246,7 +246,7 @@
             mnHelpManual.Image = (Image)resources.GetObject("mnHelpManual.Image");
             mnHelpManual.Name = "mnHelpManual";
             mnHelpManual.ShortcutKeys = Keys.Control | Keys.F1;
-            mnHelpManual.Size = new Size(277, 22);
+            mnHelpManual.Size = new Size(160, 22);
             mnHelpManual.Text = "Manuel";
             mnHelpManual.Click += mnHelpManual_Click;
             // 
@@ -254,8 +254,8 @@
             // 
             mnHelpAcercaDe.Image = (Image)resources.GetObject("mnHelpAcercaDe.Image");
             mnHelpAcercaDe.Name = "mnHelpAcercaDe";
-            mnHelpAcercaDe.Size = new Size(277, 22);
-            mnHelpAcercaDe.Text = "Acerca de (misma ventana de manual)";
+            mnHelpAcercaDe.Size = new Size(160, 22);
+            mnHelpAcercaDe.Text = "Acerca de";
             mnHelpAcercaDe.Click += mnHelpAcercaDe_Click;
             // 
             // toolMain
@@ -460,7 +460,7 @@
             Margin = new Padding(4);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "k nonvre le pongo xd¿";
+            Text = "AnimeNotes";
             FormClosing += Form1_FormClosing;
             mnMain.ResumeLayout(false);
             mnMain.PerformLayout();

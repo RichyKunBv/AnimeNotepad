@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Reflection.Emit;
 using static webiwabo.Form1.EditManager;
 using System.Diagnostics;
+using System.Runtime.Intrinsics;
 
 namespace webiwabo
 {
@@ -410,8 +411,6 @@ namespace webiwabo
                 }
             }
         }
-
-
     }
 }
 

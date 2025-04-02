@@ -117,11 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label3.Text" xml:space="preserve">
+    <value>AnimeNotes es un bloc de notas 
+moderno que fusiona la simplicidad 
+del clásico Bloc de Notas de 
+Windows con una experiencia 
+visual inspirada en el mundo del anime. 
+Crea documentos, toma apuntes 
+o guarda ideas al estilo tradicional, 
+¡pero con un toque kawaii y 
+la compañía de personajes
+icónicos como Zero Two, 
+Hatsune Miku, y muchos más!</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAvIAAAGoCAYAAAAkZgFAAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAA/7JJREFUeF7s3QXUbclRuH0I7u6uwV0Hd3d3G9zd3T24Roc4JDhxJDgxCBAPMQIh
+        vQAADr0BR/uQrQAA/7JJREFUeF7s3QXUbclRuH0I7u6uwV0Hd3d3G9zd3T24Roc4JDhxJDgxCBAPMQIh
         QkgIBEnOP7/z8dyv6LXPe+8dZiDvzL5r1drWu7u6urr76dp93vscn/u5n3t4xVd8xV122WWXXXbZZZdd
         dtnlHMkFkH+O53iOXXbZ5dlU3uVd3mXz/nVVnvM5n/NMea7neq7D8zzP8xye//mf//ACL/ACx3PyvM/7
         vMd7L/iCL3h4oRd6ocMLv/ALH17kRV7kgrzoi77oUV7sxV7s8OIv/uKHl3iJl7ggrt0vzZSZhzyJ/Imy

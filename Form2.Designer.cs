@@ -34,6 +34,7 @@
             pictureBox1 = new PictureBox();
             label2 = new Label();
             label1 = new Label();
+            lblVersion = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -52,9 +53,9 @@
             label2.ForeColor = SystemColors.ButtonHighlight;
             label2.Location = new Point(12, 402);
             label2.Name = "label2";
-            label2.Size = new Size(94, 15);
+            label2.Size = new Size(57, 15);
             label2.TabIndex = 2;
-            label2.Text = "V1.3     2025     ©";
+            label2.Text = "2025     ©";
             // 
             // label1
             // 
@@ -68,12 +69,24 @@
             label1.TabIndex = 1;
             label1.Text = "Aplicacion \r\nChida";
             // 
+            // lblVersion
+            // 
+            lblVersion.AutoSize = true;
+            lblVersion.BackColor = SystemColors.ActiveCaptionText;
+            lblVersion.ForeColor = SystemColors.ButtonHighlight;
+            lblVersion.Location = new Point(75, 402);
+            lblVersion.Name = "lblVersion";
+            lblVersion.Size = new Size(51, 15);
+            lblVersion.TabIndex = 3;
+            lblVersion.Text = "Version: ";
+            // 
             // SpashScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
             ClientSize = new Size(753, 426);
+            Controls.Add(lblVersion);
             Controls.Add(label2);
             Controls.Add(pictureBox1);
             Controls.Add(label1);
@@ -95,5 +108,6 @@
         private PictureBox pictureBox1;
         private Label label2;
         private Label label1;
+        private Label lblVersion;
     }
 }

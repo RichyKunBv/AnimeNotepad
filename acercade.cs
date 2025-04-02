@@ -15,6 +15,8 @@ namespace webiwabo
         public acercade()
         {
             InitializeComponent();
+            lblVersion.Text = Verzion.Texto; // Usa el mismo texto que en Form
+
         }
 
         private void button1_Click(object sender, EventArgs e)

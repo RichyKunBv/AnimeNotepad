@@ -33,6 +33,7 @@
             label1 = new Label();
             label3 = new Label();
             button1 = new Button();
+            lblVersion = new Label();
             SuspendLayout();
             // 
             // label2
@@ -42,9 +43,9 @@
             label2.ForeColor = SystemColors.ButtonHighlight;
             label2.Location = new Point(12, 363);
             label2.Name = "label2";
-            label2.Size = new Size(94, 15);
+            label2.Size = new Size(60, 15);
             label2.TabIndex = 3;
-            label2.Text = "V1.3     2025     ©";
+            label2.Text = " 2025     ©";
             // 
             // label1
             // 
@@ -61,11 +62,13 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(51, 151);
+            label3.BackColor = SystemColors.ActiveCaptionText;
+            label3.ForeColor = SystemColors.ButtonHighlight;
+            label3.Location = new Point(6, 112);
             label3.Name = "label3";
-            label3.Size = new Size(115, 15);
+            label3.Size = new Size(219, 165);
             label3.TabIndex = 5;
-            label3.Text = "APLICACION CHIDA";
+            label3.Text = resources.GetString("label3.Text");
             // 
             // button1
             // 
@@ -79,12 +82,24 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
+            // lblVersion
+            // 
+            lblVersion.AutoSize = true;
+            lblVersion.BackColor = SystemColors.ActiveCaptionText;
+            lblVersion.ForeColor = SystemColors.ButtonHighlight;
+            lblVersion.Location = new Point(78, 363);
+            lblVersion.Name = "lblVersion";
+            lblVersion.Size = new Size(51, 15);
+            lblVersion.TabIndex = 7;
+            lblVersion.Text = "Version: ";
+            // 
             // acercade
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(737, 387);
+            Controls.Add(lblVersion);
             Controls.Add(button1);
             Controls.Add(label3);
             Controls.Add(label1);
@@ -103,5 +118,6 @@
         private Label label1;
         private Label label3;
         private Button button1;
+        private Label lblVersion;
     }
 }

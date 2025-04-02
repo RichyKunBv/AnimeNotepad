@@ -10,6 +10,7 @@ namespace webiwabo
         public SpashScreen()
         {
             InitializeComponent();
+            lblVersion.Text = Verzion.Texto; // Muestra el texto al iniciar
             TimeLeft = 3; // Duración del splash en segundos
         }
 
