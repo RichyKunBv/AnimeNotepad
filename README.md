@@ -9,4 +9,4 @@ Aplicacion tipo bloc de notas pero con monas chinas
 
 <img width="664" alt="Captura de pantalla 2025-03-25 a la(s) 7 21 33 p m" src="https://github.com/user-attachments/assets/6ad5d397-a93a-40ae-b0a3-2676e59446ab" />
 
-<img width="664" alt="Captura de pantalla 2025-03-25 a la(s) 7 21 59 p m" src="https://github.com/user-attachments/assets/30c08b2a-cee2-41d1-b555-7732cf5d1618" />
+<img width="664" alt="Captura de pantalla 2025-03-25 a la(s) 7 21 33 p m" src="https://github.com/user-attachments/assets/cd577330-ed06-4b7f-ba2d-b2f4ba13fb0a" />
