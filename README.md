@@ -11,3 +11,7 @@ Aplicacion tipo bloc de notas pero con monas chinas
 <img width="664" alt="Impresion" src="https://github.com/user-attachments/assets/77c163f3-2455-4e9c-a68e-5030e17c91ba" />
 
 <img width="664" alt="Acerca de" src="https://github.com/user-attachments/assets/cd577330-ed06-4b7f-ba2d-b2f4ba13fb0a" />
+
+
+
+Es necesario .NET 8 (https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
