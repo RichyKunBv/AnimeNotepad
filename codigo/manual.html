@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Manual - AnimeNotepad</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 2rem;
+            background-color: #f0f0f0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #e91e63;
+            padding-bottom: 0.5rem;
+        }
+
+        .feature-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background: #f8f9fa;
+            border-left: 4px solid #e91e63;
+        }
+
+        .keyboard-shortcuts {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .shortcut {
+            padding: 10px;
+            background: #fff5f7;
+            border-radius: 5px;
+        }
+
+        code {
+            background: #eee;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .format-section {
+            background: #e3f2fd;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .section {
+            margin: 1.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📖 Manual de AnimeNotepad</h1>
+        
+        <!-- Sección de Introducción -->
+        <div class="section" id="introduccion">
+            <h2>Introducción</h2>
+            <p><strong>¿Qué es AnimeNotepad?</strong><br>
+            AnimeNotepad es un editor de texto con una temática única inspirada en el mundo del anime. Su diseño estético y amigable permite a los usuarios disfrutar de una experiencia creativa y personalizada al momento de tomar notas o escribir documentos.</p>
+            <p><strong>¿Para qué sirve?</strong><br>
+            Esta herramienta está diseñada para simplificar el proceso de redacción y edición de textos, ofreciendo funcionalidades básicas como la creación, apertura, edición y guardado de archivos, todo en un entorno visualmente atractivo y fácil de usar.</p>
+        </div>
+
+        <!-- Sección de Guía de Uso -->
+        <div class="section" id="guia-uso">
+            <h2>Guía de Uso</h2>
+            <p>AnimeNotepad está pensado para ser intuitivo y accesible tanto para nuevos usuarios como para aquellos con experiencia en editores de texto. Sigue esta guía para aprovechar al máximo sus funciones:</p>
+            <ol>
+                <li><strong>Inicio Rápido:</strong> Al abrir el programa, encontrarás una interfaz limpia y organizada que te permitirá empezar a escribir de inmediato.</li>
+                <li><strong>Navegación:</strong> Utiliza la barra de menú para acceder a funciones clave como crear un nuevo archivo, abrir documentos existentes o guardar tu trabajo.</li>
+                <li><strong>Atajos de Teclado:</strong> Para mayor eficiencia, AnimeNotepad soporta atajos de teclado estándar (por ejemplo, <code>Ctrl + N</code> para un nuevo archivo, <code>Ctrl + S</code> para guardar, etc.).</li>
+                <li><strong>Personalización:</strong> Puedes ajustar el formato del texto, elegir entre distintas fuentes y paletas de colores para que el entorno se adapte a tus gustos.</li>
+                <li><strong>Impresión:</strong> Si necesitas una copia física, utiliza la opción de impresión que te permite configurar la impresora y el número de copias deseadas.</li>
+            </ol>
+        </div>
+        
+        <h2>🎯 Funciones Principales</h2>
+        <div class="feature-table">
+            <table>
+                <tr>
+                    <th>Función</th>
+                    <th>Comando</th>
+                    <th>Descripción</th>
+                </tr>
+                <tr>
+                    <td>Nuevo Archivo</td>
+                    <td><code>Ctrl + N</code></td>
+                    <td>Crea un nuevo documento en archivo de texto (.txt)</td>
+                </tr>
+                <tr>
+                    <td>Abrir</td>
+                    <td><code>Ctrl + O</code></td>
+                    <td>Abre un archivo existente en formato de texto (.txt)</td>
+                </tr>
+                <tr>
+                    <td>Guardar</td>
+                    <td><code>Ctrl + S</code></td>
+                    <td>Guarda el documento actual en formato de texto (.txt)</td>
+                </tr>
+                <tr>
+                    <td>Imprimir</td>
+                    <td><code>Ctrl + P</code></td>
+                    <td>Pantalla de impresión estándar de Windows</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>🎨 Formato de Texto</h2>
+        <div class="format-section">
+            <p><strong>Editar > Fuente y colores</strong></p>
+            <ul>
+                <li>✒️ Selector de fuentes clasico de Windows</li>
+                <li>🖌️ Paleta de colores estándar</li>
+                <li>🔠 Tamaño de fuente</li>
+            </ul>
+        </div>
+
+        <h2>⌨️ Atajos Esenciales</h2>
+        <div class="keyboard-shortcuts">
+            <div class="shortcut">
+                <strong>Cortar:</strong><br>
+                <code>Ctrl + X</code>
+            </div>
+            <div class="shortcut">
+                <strong>Copiar:</strong><br>
+                <code>Ctrl + C</code>
+            </div>
+            <div class="shortcut">
+                <strong>Pegar:</strong><br>
+                <code>Ctrl + V</code>
+            </div>
+            <div class="shortcut">
+                <strong>Seleccionar Todo:</strong><br>
+                <code>Ctrl + A</code>
+            </div>
+        </div>
+
+        <h2>🖨️ Impresión</h2>
+        <ul class="feature-list">
+            <li>Vista previa nativa de Windows</li>
+            <li>Configuración de impresora predeterminada</li>
+            <li>Selección de número de copias</li>
+        </ul>
+
+        <div class="footer">
+            <p>Versión V1.3.1 | © 2025 AnimeNotepad</p>
+        </div>
+    </div>
+</body>
+</html>
