@@ -44,7 +44,7 @@ Para poder ejecutar la aplicación, necesitas tener instalado **.NET 8**.
 
 * [**.NET 8**](https://dotnet.microsoft.com/es-es/download/dotnet/8.0) - El framework principal sobre el que corre la aplicación.
 * **C#** - El lenguaje de programación para toda la lógica de la aplicación.
-* **HTML** - Utilizado para la estructura de algunas vistas.
+* **HTML** - Utilizado para el manual.
 * **Windows Forms** - Para la creación de la interfaz gráfica de usuario.
 
 ## 👤 Autor
