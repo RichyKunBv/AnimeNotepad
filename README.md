@@ -1,30 +1,3 @@
-# webiwabo
-
-Aplicacion tipo bloc de notas pero con monas chinas
-
-
-
-
-
-
-
-
-
-
-
-
-
-Es necesario .NET 8 (https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
-
-
-
-
-.
-
-
-
-
-
 # AnimeNotepad - Notepad con Temática de Anime
 
 <img width="664" alt="Main" src="https://github.com/user-attachments/assets/80378629-f00f-475d-b4e5-c41f361e0d9d" />
