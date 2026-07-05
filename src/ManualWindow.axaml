@@ -1,0 +1,72 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="400"
+        x:Class="AnimeNotepad.ManualWindow"
+        Title="Manual de Bloc de Notas"
+        Width="450" Height="400"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <ScrollViewer Grid.Row="0" Margin="20">
+            <StackPanel Spacing="10">
+                <TextBlock Text="Manual de Bloc de Notas" FontSize="28" FontWeight="Bold" Foreground="#333333" Margin="0,0,0,10"/>
+                
+                <TextBlock Text="Bienvenido al manual de usuario." FontSize="16" Foreground="Black"/>
+                
+                <TextBlock Text="Funciones Básicas" FontSize="22" FontWeight="SemiBold" Foreground="#333333" Margin="0,15,0,5"/>
+                
+                <StackPanel Spacing="5" Margin="10,0,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="• " FontWeight="Bold" Foreground="Black" FontSize="16"/>
+                        <TextBlock Text="Nuevo: " FontWeight="Bold" Foreground="Black" FontSize="16"/>
+                        <TextBlock Text="Crea un documento en blanco." Foreground="Black" FontSize="16"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="• " FontWeight="Bold" Foreground="Black" FontSize="16"/>
+                        <TextBlock Text="Abrir: " FontWeight="Bold" Foreground="Black" FontSize="16"/>
+                        <TextBlock Text="Carga un archivo de texto." Foreground="Black" FontSize="16"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="• " FontWeight="Bold" Foreground="Black" FontSize="16"/>
+                        <TextBlock Text="Guardar: " FontWeight="Bold" Foreground="Black" FontSize="16"/>
+                        <TextBlock Text="Guarda el contenido actual." Foreground="Black" FontSize="16"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <TextBlock Text="Atajos de Teclado" FontSize="22" FontWeight="SemiBold" Foreground="#333333" Margin="0,15,0,5"/>
+                
+                <StackPanel Spacing="5" Margin="10,0,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="• " FontWeight="Bold" Foreground="Black" FontSize="16"/>
+                        <TextBlock Text="Ctrl + N: " FontWeight="Bold" Foreground="Black" FontSize="16"/>
+                        <TextBlock Text="Nuevo archivo" Foreground="Black" FontSize="16"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="• " FontWeight="Bold" Foreground="Black" FontSize="16"/>
+                        <TextBlock Text="Ctrl + S: " FontWeight="Bold" Foreground="Black" FontSize="16"/>
+                        <TextBlock Text="Guardar" Foreground="Black" FontSize="16"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="• " FontWeight="Bold" Foreground="Black" FontSize="16"/>
+                        <TextBlock Text="Ctrl + O: " FontWeight="Bold" Foreground="Black" FontSize="16"/>
+                        <TextBlock Text="Abrir archivo" Foreground="Black" FontSize="16"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Footer Izquierdo -->
+        <Border Grid.Row="1" Background="#F0F0F0" Padding="15" BorderBrush="LightGray" BorderThickness="0,1,0,0">
+            <Button Content="Cerrar" Click="CloseButton_Click" HorizontalAlignment="Right" Width="100" HorizontalContentAlignment="Center"/>
+        </Border>
+    </Grid>
+</Window>

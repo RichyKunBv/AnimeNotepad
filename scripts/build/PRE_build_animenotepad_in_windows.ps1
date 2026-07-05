@@ -52,17 +52,17 @@ function carpeta_macOS {
 function actualizar_macOS {
     Write-Host "=== Iniciando compilación de AnimeNotepad para macOS desde Windows ==="
 
-    # Extraer versión del .csproj
-    $csprojPath = "$PROJECT_DIR\src\AnimeNotepad.csproj"
-    if (-not (Test-Path $csprojPath)) {
-        Write-Host "Error: No se encontró $csprojPath" -ForegroundColor Red
+    # Extraer versión de Verzion.cs
+    $verzionPath = "$PROJECT_DIR\src\Verzion.cs"
+    if (-not (Test-Path $verzionPath)) {
+        Write-Host "Error: No se encontró $verzionPath" -ForegroundColor Red
         return
     }
-    $csprojContent = Get-Content $csprojPath -Raw
-    if ($csprojContent -match '<Version>(.*?)</Version>') {
+    $verzionContent = Get-Content $verzionPath -Raw
+    if ($verzionContent -match 'Texto\s*\{\s*get;\s*set;\s*\}\s*=\s*"V?(.*?)"') {
         $VERSION = $Matches[1]
     } else {
-        Write-Host "Error: No se encontró la etiqueta <Version> en el .csproj" -ForegroundColor Red
+        Write-Host "Error: No se pudo encontrar la versión en Verzion.cs" -ForegroundColor Red
         return
     }
 
@@ -127,17 +127,17 @@ function carpeta_windows {
 function actualizar_windows {
     Write-Host "=== Iniciando compilación de AnimeNotepad para Windows ==="
 
-    # Obtener versión del .csproj usando expresión regular
-    $csprojPath = "$PROJECT_DIR\src\AnimeNotepad.csproj"
-    if (-not (Test-Path $csprojPath)) {
-        Write-Host "Error: No se encontró $csprojPath" -ForegroundColor Red
+    # Obtener versión de Verzion.cs usando expresión regular
+    $verzionPath = "$PROJECT_DIR\src\Verzion.cs"
+    if (-not (Test-Path $verzionPath)) {
+        Write-Host "Error: No se encontró $verzionPath" -ForegroundColor Red
         return
     }
-    $csprojContent = Get-Content $csprojPath -Raw
-    if ($csprojContent -match '<Version>(.*?)</Version>') {
+    $verzionContent = Get-Content $verzionPath -Raw
+    if ($verzionContent -match 'Texto\s*\{\s*get;\s*set;\s*\}\s*=\s*"V?(.*?)"') {
         $VERSION = $Matches[1]
     } else {
-        Write-Host "Error: No se encontró la etiqueta <Version> en el .csproj" -ForegroundColor Red
+        Write-Host "Error: No se pudo encontrar la versión en Verzion.cs" -ForegroundColor Red
         return
     }
 
@@ -180,16 +180,16 @@ function carpeta_linux {
 function actualizar_linux {
     Write-Host "=== Iniciando compilación de AnimeNotepad para Linux ==="
 
-    $csprojPath = "$PROJECT_DIR\src\AnimeNotepad.csproj"
-    if (-not (Test-Path $csprojPath)) {
-        Write-Host "Error: No se encontró $csprojPath" -ForegroundColor Red
+    $verzionPath = "$PROJECT_DIR\src\Verzion.cs"
+    if (-not (Test-Path $verzionPath)) {
+        Write-Host "Error: No se encontró $verzionPath" -ForegroundColor Red
         return
     }
-    $csprojContent = Get-Content $csprojPath -Raw
-    if ($csprojContent -match '<Version>(.*?)</Version>') {
+    $verzionContent = Get-Content $verzionPath -Raw
+    if ($verzionContent -match 'Texto\s*\{\s*get;\s*set;\s*\}\s*=\s*"V?(.*?)"') {
         $VERSION = $Matches[1]
     } else {
-        Write-Host "Error: No se encontró la etiqueta <Version> en el .csproj" -ForegroundColor Red
+        Write-Host "Error: No se pudo encontrar la versión en Verzion.cs" -ForegroundColor Red
         return
     }
 

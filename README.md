@@ -1,6 +1,16 @@
 # AnimeNotepad - Notepad con Temática de Anime
 
-<img width="664" alt="Main" src="https://github.com/user-attachments/assets/80378629-f00f-475d-b4e5-c41f361e0d9d" />
+[![Versión](https://img.shields.io/badge/Versión-2.0-blue.svg)](https://github.com/RichyKunBv/Ultraudio)
+[![Estable](https://img.shields.io/badge/Estado-Estable-red.svg)](https://github.com/RichyKunBv/Ultraudio)
+[![Licencia](https://img.shields.io/badge/Licencia-Apache-green.svg)](https://github.com/RichyKunBv/Ultraudio/blob/main/LICENSE)
+[![Lenguaje](https://img.shields.io/badge/Lenguaje-C%23.NET-lightgrey.svg)](https://dotnet.microsoft.com/es-es/download/dotnet/10.0)
+[![GUI](https://img.shields.io/badge/GUI-Avalonia%20UI-purple.svg)](https://avaloniaui.net)
+
+![Linux](https://img.shields.io/badge/Linux-000000?style=for-the-badge&logo=linux&logoColor=white)
+![Windows](https://img.shields.io/badge/Windows-000000?style=for-the-badge&logo=windows&logoColor=white)
+![macOS](https://img.shields.io/badge/macOS-000000?style=for-the-badge&logo=apple&logoColor=white)
+
+<img width="664" alt="Main" src="res/docs/Principal.png" />
 
 Una sencilla pero divertida aplicación de bloc de notas para Windows, con una adorable temática de anime para personalizar tu experiencia.
 
@@ -19,33 +29,55 @@ Una sencilla pero divertida aplicación de bloc de notas para Windows, con una a
 
 ## 🖼️ Capturas de Pantalla
 
-| Pantalla de Inicio | Ventana Principal | Opciones de Fuente y Color |
+| Splash Screen | Ventana Principal | Opciones de Fuente y Color |
 | :---: | :---: | :---: |
-| <img width="664" alt="SpashScreen" src="https://github.com/user-attachments/assets/dd12791f-43d8-49a5-9fbf-27ef43c75ae4" /> | <img width="664" alt="Main" src="https://github.com/user-attachments/assets/80378629-f00f-475d-b4e5-c41f361e0d9d" /> | <img width="664" alt="FuenteYColor" src="https://github.com/user-attachments/assets/e9207c90-10a1-45b6-bf3c-1c9c0520a6c3" />
+| <img width="664" alt="SpashScreen" src="res/docs/SplashScreen.png" /> | <img width="664" alt="Main" src="res/docs/Principal.png" /> | <img width="664" alt="FuenteYColor" src="res/docs/fuente y color.png" />
 
-| Impresión | Acerca de |
-| :---: | :---: |
-| <img width="664" alt="Impresion" src="https://github.com/user-attachments/assets/77c163f3-2455-4e9c-a68e-5030e17c91ba" /> | <img width="664" alt="Acerca de" src="https://github.com/user-attachments/assets/cd577330-ed06-4b7f-ba2d-b2f4ba13fb0a" /> |
+| Impresión | Acerca de | Actualizar |
+| :---: | :---: | :---: |
+| <img width="664" alt="Impresion" src="res/docs/impresion.png" /> | <img width="664" alt="Acerca de" src="res/docs/acerca de.png" /> | <img width="664" alt="Actualizar" src="res/docs/actualizar.png" /> |
 
-## 🚀 Cómo empezar
+## 🛠️ Tecnologías y Dependencias
 
-### Prerrequisitos
+El proyecto está desarrollado en **C# (.NET 10)** y se apoya en las siguientes bibliotecas y tecnologías:
 
-Para poder ejecutar la aplicación, necesitas tener instalado **.NET 8**.
-* [Descargar .NET 8](https://dotnet.microsoft.com/es-es/download/dotnet/8.0)
+- [Avalonia UI](https://avaloniaui.net/): Framework de interfaz de usuario para aplicaciones de escritorio multiplataforma.
+- [Internet](https://github.com/RichyKunBv/AnimeNotepad/releases/latest): Herramienta para actualizar la aplicacion
 
-### Instalación
+## ⬇️ Descargas / Instalación
 
-1.  Ve a la sección de [**Releases**](https://github.com/RichyKunBv/AnimeNotepad/releases) en este repositorio.
-2.  Descarga el archivo `setup.exe` de la versión más reciente.
-3.  Ejecuta el instalador y sigue las instrucciones.
+Puedes descargar los binarios precompilados listos para usar desde la sección de **[Releases](https://github.com/RichyKunBv/AnimeNotepad/releases/latest)**.
 
-## 🛠️ Construido con
+Están disponibles para todos los sistemas operativos principales (**Windows, macOS y Linux**) en las arquitecturas más utilizadas:
+- **x64** (Procesadores Intel y AMD)
+- **arm64** (Apple Silicon y procesadores ARM)
 
-* [**.NET 8**](https://dotnet.microsoft.com/es-es/download/dotnet/8.0) - El framework principal sobre el que corre la aplicación.
-* **C#** - El lenguaje de programación para toda la lógica de la aplicación.
-* **HTML** - Utilizado para el manual.
-* **Windows Forms** - Para la creación de la interfaz gráfica de usuario.
+```sh
+# Para macOS, quitar el atributo de cuarentena si no se puede abrir la app
+sudo xattr -cr /Applications/AnimeNotepad.app
+```
+
+## 🚀 Cómo compilar y ejecutar
+
+### Requisitos Previos
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+
+### Compilación y Ejecución
+Asegúrate de ejecutar los comandos desde el directorio raíz del proyecto (donde se encuentra `AnimeNotepad.slnx`):
+
+```bash
+cd src
+dotnet run
+```
+
+
+Para la creación y empaquetado de la aplicación, dispones de scripts automatizados en el directorio `scripts/`:
+
+- **macOS**: `scripts/build_animenotepad_in_macos.sh` (empaqueta como `.app` nativa y también compila para Windows y Linux).
+- **Windows**: `scripts/PRE_build_animenotepad_in_windows.ps1` (facilita la creación de paquetes para múltiples sistemas y arquitecturas).
+- **Linux**: `scripts/PRE_build_animenotepad_in_linux.sh` (facilita la creación de paquetes para múltiples sistemas y arquitecturas).
+
+> **Nota:** Todos los scripts se encuentran en la carpeta `scripts/`. En los scripts de Linux y Windows no se puede firmar la aplicación para macOS, ya que este paso es exclusivo y debe realizarse desde una Mac.
 
 ## 👤 Autor
 

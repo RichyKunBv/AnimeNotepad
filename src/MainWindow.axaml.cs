@@ -63,11 +63,58 @@ public partial class MainWindow : Window
         }
     }
 
-    private void MenuPrint_Click(object? sender, RoutedEventArgs e)
+    private async void MenuPrint_Click(object? sender, RoutedEventArgs e)
     {
-        // Avalonia no tiene soporte nativo fácil para imprimir de caja como WinForms (PrintDialog) en v11.
-        // Simulamos un cuadro de mensaje de error o aviso por ahora, dado que es multiplataforma.
-        ShowMessage("Impresión", "La funcionalidad de impresión nativa multiplataforma no está disponible directamente en Avalonia. Se puede integrar con librerías externas o delegar al OS.");
+        var printWindow = new PrintWindow();
+        var result = await printWindow.ShowDialog<bool>(this);
+        
+        if (result)
+        {
+            string textToPrint = EditorTextBox.Text ?? string.Empty;
+            try
+            {
+                string tempFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "AnimeNotepad_Print.txt");
+                System.IO.File.WriteAllText(tempFile, textToPrint);
+                
+                if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
+                {
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = "lpr",
+                        Arguments = $"\"{tempFile}\"",
+                        UseShellExecute = false,
+                        CreateNoWindow = true
+                    });
+                    ShowMessage("Impresión", "Documento enviado a la impresora de macOS.");
+                }
+                else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
+                {
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = "notepad",
+                        Arguments = $"/p \"{tempFile}\"",
+                        UseShellExecute = true,
+                        WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden
+                    });
+                    ShowMessage("Impresión", "Documento enviado a la impresora de Windows.");
+                }
+                else
+                {
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = "lpr",
+                        Arguments = $"\"{tempFile}\"",
+                        UseShellExecute = false,
+                        CreateNoWindow = true
+                    });
+                    ShowMessage("Impresión", "Documento enviado a lpr en Linux.");
+                }
+            }
+            catch (System.Exception ex)
+            {
+                ShowMessage("Error de Impresión", $"No se pudo completar la impresión: {ex.Message}");
+            }
+        }
     }
 
     private void MenuExit_Click(object? sender, RoutedEventArgs e)
@@ -80,11 +127,31 @@ public partial class MainWindow : Window
     private void MenuPaste_Click(object? sender, RoutedEventArgs e) => EditorTextBox.Paste();
     private void MenuSelectAll_Click(object? sender, RoutedEventArgs e) => EditorTextBox.SelectAll();
 
-    private void MenuFonts_Click(object? sender, RoutedEventArgs e)
+    private async void MenuFonts_Click(object? sender, RoutedEventArgs e)
     {
-        // En Avalonia no hay FontDialog nativo. 
-        // Implementación básica (podría extenderse a usar una ventana FontColorDialogWindow personalizada).
-        ShowMessage("Fuentes", "El diálogo de fuentes requiere una implementación personalizada en Avalonia UI. Puedes cambiar la fuente editando el código XAML por ahora.");
+        var fontWindow = new FontColorWindow(
+            EditorTextBox.FontFamily,
+            EditorTextBox.FontSize,
+            EditorTextBox.FontWeight,
+            EditorTextBox.FontStyle,
+            null, // TextDecorations underline not strictly natively supported directly on TextBox, but we can pass null for now
+            EditorTextBox.Foreground
+        );
+
+        var result = await fontWindow.ShowDialog<FontColorDialogResult>(this);
+        if (result != null)
+        {
+            EditorTextBox.FontFamily = result.FontFamily ?? EditorTextBox.FontFamily;
+            EditorTextBox.FontSize = result.FontSize;
+            EditorTextBox.FontWeight = result.FontWeight;
+            EditorTextBox.FontStyle = result.FontStyle;
+            // Note: TextBox in Avalonia does not currently support TextDecorations (underline) easily on the whole control. 
+            // We apply the Foreground.
+            if (result.Foreground != null)
+            {
+                EditorTextBox.Foreground = result.Foreground;
+            }
+        }
     }
 
     private void MenuColors_Click(object? sender, RoutedEventArgs e)
@@ -111,16 +178,46 @@ public partial class MainWindow : Window
         }
     }
 
-    private void MenuManual_Click(object? sender, RoutedEventArgs e)
+    private async void MenuManual_Click(object? sender, RoutedEventArgs e)
     {
-        // Open web browser or local manual
-        ShowMessage("Manual", "Abre manual.html");
+        var manualWindow = new ManualWindow();
+        await manualWindow.ShowDialog(this);
     }
 
     private async void MenuAbout_Click(object? sender, RoutedEventArgs e)
     {
         var aboutWindow = new AboutWindow();
         await aboutWindow.ShowDialog(this);
+    }
+
+    private async void MenuCheckUpdates_Click(object? sender, RoutedEventArgs e)
+    {
+        var (status, latestVersion) = await AnimeNotepad.Services.UpdateService.CheckForUpdatesAsync(Verzion.Texto.TrimStart('v', 'V'));
+
+        if (status == AnimeNotepad.Services.UpdateStatus.Outdated)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = AnimeNotepad.Services.UpdateService.GetDirectDownloadUrl(),
+                    UseShellExecute = true
+                });
+                ShowMessage("Actualización en curso", $"Se ha iniciado la descarga de la nueva versión ({latestVersion}).");
+            }
+            catch
+            {
+                ShowMessage("Actualización disponible", $"Hay una nueva versión disponible ({latestVersion}).\nVisita el repositorio para descargarla.");
+            }
+        }
+        else if (status == AnimeNotepad.Services.UpdateStatus.UpToDate || status == AnimeNotepad.Services.UpdateStatus.Newer)
+        {
+            ShowMessage("Actualizaciones", "Ya tienes la última versión instalada.");
+        }
+        else
+        {
+            ShowMessage("Error", "No se pudo verificar la actualización.");
+        }
     }
 
     private async void ShowMessage(string title, string message)

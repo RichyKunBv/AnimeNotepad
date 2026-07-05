@@ -71,11 +71,11 @@ carpeta_macOS() {
 actualizar_macOS() {
     echo "=== Iniciando compilación de AnimeNotepad ==="
 
-    # 1. Extraer la versión del archivo .csproj usando awk
-    VERSION=$(awk -F'[><]' '/<Version>/{print $3}' "$PROJECT_DIR/src/AnimeNotepad.csproj")
+    # 1. Extraer la versión de Verzion.cs usando awk
+    VERSION=$(awk -F'"' '/public static string Texto/{print $2}' "$PROJECT_DIR/src/Verzion.cs" | tr -d 'V')
 
     if [ -z "$VERSION" ]; then
-        echo "Error: No se pudo encontrar la etiqueta <Version> en el .csproj"
+        echo "Error: No se pudo encontrar la versión en Verzion.cs"
         return
     fi
 
@@ -126,10 +126,10 @@ carpeta_windows() {
 actualizar_windows() {
     echo "=== Iniciando compilación de AnimeNotepad para Windows ==="
 
-    VERSION=$(awk -F'[><]' '/<Version>/{print $3}' "$PROJECT_DIR/src/AnimeNotepad.csproj")
+    VERSION=$(awk -F'"' '/public static string Texto/{print $2}' "$PROJECT_DIR/src/Verzion.cs" | tr -d 'V')
 
     if [ -z "$VERSION" ]; then
-        echo "Error: No se pudo encontrar la etiqueta <Version> en el .csproj"
+        echo "Error: No se pudo encontrar la versión en Verzion.cs"
         return
     fi
 
@@ -171,10 +171,10 @@ carpeta_linux() {
 actualizar_linux() {
     echo "=== Iniciando compilación de AnimeNotepad para Linux ==="
 
-    VERSION=$(awk -F'[><]' '/<Version>/{print $3}' "$PROJECT_DIR/src/AnimeNotepad.csproj")
+    VERSION=$(awk -F'"' '/public static string Texto/{print $2}' "$PROJECT_DIR/src/Verzion.cs" | tr -d 'V')
 
     if [ -z "$VERSION" ]; then
-        echo "Error: No se pudo encontrar la etiqueta <Version> en el .csproj"
+        echo "Error: No se pudo encontrar la versión en Verzion.cs"
         return
     fi
 

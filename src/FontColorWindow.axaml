@@ -1,0 +1,83 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="350"
+        x:Class="AnimeNotepad.FontColorWindow"
+        Title="Configurar Fuente y Color"
+        Width="450" Height="350"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Row="0">
+            <!-- Pestaña Fuente -->
+            <TabItem Header="Fuente">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,20,10,10" Spacing="10">
+                        <TextBlock Text="Fuente:" VerticalAlignment="Center" Foreground="Black"/>
+                        <ComboBox Name="FontFamilyComboBox" Width="200" MaxDropDownHeight="250"/>
+                        
+                        <TextBlock Text="Tamaño:" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="Black"/>
+                        <NumericUpDown Name="FontSizeUpDown" Minimum="8" Maximum="72" Value="14" Width="70" FormatString="0"/>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20,10,10,10" Spacing="20">
+                        <CheckBox Name="ChkBold" Content="Negrita" Foreground="Black"/>
+                        <CheckBox Name="ChkItalic" Content="Cursiva" Foreground="Black"/>
+                        <CheckBox Name="ChkUnderline" Content="Subrayado" Foreground="Black"/>
+                    </StackPanel>
+
+                    <Image Grid.Row="2" Source="avares://AnimeNotepad/res/fontcolor/zero two.png" 
+                           HorizontalAlignment="Left" VerticalAlignment="Bottom" 
+                           Margin="10" Width="100"/>
+                </Grid>
+            </TabItem>
+            
+            <!-- Pestaña Avanzado (Color) -->
+            <TabItem Header="Avanzado">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Selecciona el color del texto:" Foreground="Black" Margin="0,0,0,10"/>
+                    <WrapPanel Grid.Row="1" Orientation="Horizontal">
+                        <Button Background="Black" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
+                        <Button Background="White" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20" BorderBrush="Gray" BorderThickness="1"/>
+                        <Button Background="Red" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
+                        <Button Background="Blue" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
+                        <Button Background="Green" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
+                        <Button Background="Yellow" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
+                        <Button Background="Purple" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
+                        <Button Background="Orange" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
+                        <Button Background="Pink" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
+                        <Button Background="Cyan" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
+                        <Button Background="Brown" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
+                        <Button Background="Gray" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
+                    </WrapPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <!-- Botones Aceptar / Cancelar -->
+        <Border Grid.Row="1" Background="#F0F0F0" Padding="15" BorderBrush="LightGray" BorderThickness="0,1,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+                <Button Content="Aceptar" Click="Aceptar_Click" Width="90" HorizontalContentAlignment="Center"/>
+                <Button Content="Cancelar" Click="Cancelar_Click" Width="90" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

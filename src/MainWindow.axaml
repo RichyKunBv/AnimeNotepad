@@ -88,6 +88,8 @@
                         <Image Source="avares://AnimeNotepad/res/mnHelp/manual.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
+                <MenuItem Header="_Buscar actualizaciones" Click="MenuCheckUpdates_Click"/>
+                <Separator/>
                 <MenuItem Header="_Acerca de" Click="MenuAbout_Click">
                     <MenuItem.Icon>
                         <Image Source="avares://AnimeNotepad/res/mnHelp/ad.png"/>

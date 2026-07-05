@@ -2,6 +2,18 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
+
+    <!-- Información de la Aplicación -->
+    <Product>AnimeNotepad</Product>
+    <Company>EsMeSolutions</Company>
+    <Authors>RichyKunBv</Authors>
+    <Description>Notepad con Temática de Anime.</Description>
+    <VerzionFileContent>$([System.IO.File]::ReadAllText('$(MSBuildProjectDirectory)/Verzion.cs'))</VerzionFileContent>
+    <Version>$([System.Text.RegularExpressions.Regex]::Match($(VerzionFileContent), `(?&lt;=\= "V?)[0-9\.]+`).Value)</Version>
+
+    <!-- Forzar que AssemblyInformationalVersion use solo la versión que defines arriba -->
+    <AssemblyInformationalVersion>$(Version)</AssemblyInformationalVersion>
+
     <Nullable>enable</Nullable>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
