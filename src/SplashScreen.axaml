@@ -1,0 +1,28 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnimeNotepad"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="300"
+        x:Class="AnimeNotepad.SplashScreen"
+        Title="SplashScreen"
+        Width="500" Height="300"
+        WindowDecorations="None"
+        WindowStartupLocation="CenterScreen"
+        Background="#2D2D30">
+    <Panel Background="Black">
+        <!-- Imagen del lado derecho -->
+        <Image Source="avares://AnimeNotepad/res/ScreenSplash.jpg" Stretch="UniformToFill" HorizontalAlignment="Right" Width="500"/>
+        
+        <!-- Texto Aplicacion Chida -->
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,40,0,0">
+            <TextBlock Text="Aplicacion" FontSize="48" FontFamily="Segoe UI, Inter" Foreground="White" />
+            <TextBlock Text="Chida" FontSize="48" FontFamily="Segoe UI, Inter" Foreground="White" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Spacing="10">
+            <TextBlock Text="{x:Static local:Verzion.Texto}" FontSize="14" FontFamily="Segoe UI, Inter" Foreground="White" />
+            <TextBlock Text="2025   ©" FontSize="14" FontFamily="Segoe UI, Inter" Foreground="White" />
+        </StackPanel>
+    </Panel>
+</Window>

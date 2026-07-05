@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=AnimeNotepad
+GenericName=Reproductor de Audio
+Comment=Aplicación para la reproducción y gestión de audio
+Exec=./AnimeNotepad
+Icon=./icon.png
+Terminal=false
+Categories=Audio;AudioVideo;Player;
+StartupNotify=true

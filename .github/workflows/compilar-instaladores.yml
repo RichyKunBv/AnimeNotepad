@@ -1,0 +1,212 @@
+name: Generar Instaladores Multiplataforma
+
+on:
+  release:
+    types: [created]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-package:
+    name: Empaquetar ${{ matrix.rid }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            arch: x64
+            rid: win-x64
+            asset_name: AnimeNotepad-x64.exe
+          - os: windows-latest
+            arch: arm64
+            rid: win-arm64
+            asset_name: AnimeNotepad-arm64.exe
+          - os: ubuntu-latest
+            arch: x64
+            rid: linux-x64
+            asset_name: AnimeNotepad-x64.AppImage
+          - os: ubuntu-latest
+            arch: arm64
+            rid: linux-arm64
+            asset_name: AnimeNotepad-arm64.AppImage
+          - os: macos-latest
+            arch: x64
+            rid: osx-x64
+            asset_name: AnimeNotepad-x64.dmg
+          - os: macos-latest
+            arch: arm64
+            rid: osx-arm64
+            asset_name: AnimeNotepad-arm64.dmg
+
+    steps:
+      - name: Obtener código fuente
+        uses: actions/checkout@v4
+
+      - name: Instalar .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Obtener Versión
+        id: get_version
+        shell: bash
+        run: |
+          VERSION=$(awk -F'[><]' '/<Version>/{print $3}' src/AnimeNotepad.csproj | head -n 1)
+          if [ -z "$VERSION" ]; then VERSION="0.0.0"; fi
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Compilar aplicación
+        run: |
+          cd src
+          dotnet publish -c Release -r ${{ matrix.rid }} --self-contained -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=None
+
+      # --- EMPAQUETADO WINDOWS ---
+      - name: Generar Instalador (Windows)
+        if: runner.os == 'Windows'
+        shell: cmd
+        run: |
+          @echo on
+          echo Eliminando .pdb...
+          del /q /s "src\bin\Release\net10.0\${{ matrix.rid }}\publish\*.pdb" 2>nul || ver>nul
+
+          if not exist "C:\PROGRA~2\NSIS\makensis.exe" (
+            echo Instalando NSIS...
+            choco install nsis -y
+          )
+
+          echo Verificando makensis.exe...
+          if not exist "C:\PROGRA~2\NSIS\makensis.exe" (
+            echo ERROR: No se encontró makensis.exe
+            exit /b 1
+          )
+
+          echo Verificando script NSIS...
+          if not exist "scripts\build\installer.nsi" (
+            echo ERROR: El archivo scripts\build\installer.nsi no existe.
+            exit /b 1
+          )
+
+          echo Ejecutando NSIS...
+          "C:\PROGRA~2\NSIS\makensis.exe" /DARCH=${{ matrix.arch }} /DVERSION=${{ env.VERSION }} /DPUBLISH_DIR=${{ github.workspace }}\src\bin\Release\net10.0\${{ matrix.rid }}\publish /DOUTFILE=${{ github.workspace }}\${{ matrix.asset_name }} scripts\build\installer.nsi
+
+          echo Verificando instalador en la raíz...
+          dir "${{ github.workspace }}\${{ matrix.asset_name }}"
+          if not exist "${{ github.workspace }}\${{ matrix.asset_name }}" (
+            echo ERROR: El instalador no se generó en la ubicación esperada.
+            exit /b 1
+          )
+
+      # --- EMPAQUETADO LINUX ---
+      - name: Preparar AppDir (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          mkdir -p AppDir/usr/bin
+          mkdir -p AppDir/usr/share/applications
+          mkdir -p AppDir/usr/share/icons/hicolor/256x256/apps
+          
+          cp -r src/bin/Release/net10.0/${{ matrix.rid }}/publish/* AppDir/usr/bin/
+          chmod +x AppDir/usr/bin/AnimeNotepad
+          
+          cp src/Assets/icon.png AppDir/usr/share/icons/hicolor/256x256/apps/AnimeNotepad.png
+          cp src/Assets/icon.png AppDir/AnimeNotepad.png
+          
+          cp src/AnimeNotepad.desktop AppDir/usr/share/applications/
+          cp src/AnimeNotepad.desktop AppDir/
+          sed -i "s/^Exec=.*/Exec=AnimeNotepad/" AppDir/usr/share/applications/AnimeNotepad.desktop
+          sed -i "s/^Exec=.*/Exec=AnimeNotepad/" AppDir/AnimeNotepad.desktop
+          sed -i "s/^Icon=.*/Icon=AnimeNotepad/" AppDir/usr/share/applications/AnimeNotepad.desktop
+          sed -i "s/^Icon=.*/Icon=AnimeNotepad/" AppDir/AnimeNotepad.desktop
+
+      - name: Generar AppImage (Linux x64)
+        if: runner.os == 'Linux' && matrix.arch == 'x64'
+        run: |
+          cat << 'EOF' > AppDir/AppRun
+          #!/bin/sh
+          HERE="$(dirname "$(readlink -f "${0}")")"
+          exec "${HERE}/usr/bin/AnimeNotepad" "$@"
+          EOF
+          chmod +x AppDir/AppRun
+          wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x appimagetool-x86_64.AppImage
+          export APPIMAGE_EXTRACT_AND_RUN=1
+          export UPDATE_INFORMATION=""
+          ./appimagetool-x86_64.AppImage AppDir ${{ matrix.asset_name }} || ./appimagetool-x86_64.AppImage AppDir ${{ matrix.asset_name }} -n
+
+      - name: Generar AppImage (Linux arm64)
+        if: runner.os == 'Linux' && matrix.arch == 'arm64'
+        run: |
+          cat << 'EOF' > AppDir/AppRun
+          #!/bin/sh
+          HERE="$(dirname "$(readlink -f "${0}")")"
+          exec "${HERE}/usr/bin/AnimeNotepad" "$@"
+          EOF
+          chmod +x AppDir/AppRun
+          wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x appimagetool-x86_64.AppImage
+          export APPIMAGE_EXTRACT_AND_RUN=1
+          export ARCH=aarch64
+          ./appimagetool-x86_64.AppImage AppDir ${{ matrix.asset_name }} || ./appimagetool-x86_64.AppImage AppDir ${{ matrix.asset_name }} -n
+
+      # --- EMPAQUETADO MACOS ---
+      - name: Preparar App Bundle (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          APP_DIR="AnimeNotepad.app"
+          mkdir -p "$APP_DIR/Contents/MacOS"
+          mkdir -p "$APP_DIR/Contents/Resources"
+          
+          cp -a src/bin/Release/net10.0/${{ matrix.rid }}/publish/. "$APP_DIR/Contents/MacOS/"
+          
+          cp src/Assets/icon.icns "$APP_DIR/Contents/Resources/" || true
+          cp src/Info.plist.template "$APP_DIR/Contents/Info.plist"
+          
+          plutil -replace CFBundleVersion -string "${{ env.VERSION }}" "$APP_DIR/Contents/Info.plist"
+          plutil -replace CFBundleShortVersionString -string "${{ env.VERSION }}" "$APP_DIR/Contents/Info.plist"
+          plutil -replace CFBundleExecutable -string "AnimeNotepad" "$APP_DIR/Contents/Info.plist"
+          plutil -replace CFBundleIconFile -string "icon.icns" "$APP_DIR/Contents/Info.plist"
+          plutil -replace CFBundleIdentifier -string "com.esmesolutions.AnimeNotepad" "$APP_DIR/Contents/Info.plist"
+          
+          xattr -cr "$APP_DIR"
+          codesign --force --deep --sign - "$APP_DIR"
+
+      - name: Generar DMG (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          brew install create-dmg
+          
+          create-dmg \
+            --volname "AnimeNotepad" \
+            --window-pos 200 120 \
+            --window-size 600 400 \
+            --icon-size 100 \
+            --icon "AnimeNotepad.app" 150 150 \
+            --hide-extension "AnimeNotepad.app" \
+            --app-drop-link 450 150 \
+            "${{ matrix.asset_name }}" \
+            "AnimeNotepad.app"
+
+      # --- SUBIR RESULTADO ---
+      - name: Subir Archivo a GitHub Releases
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ github.workspace }}/${{ matrix.asset_name }}
+          
+      - name: Subir Artefacto para PR o Manual
+        if: github.event_name != 'release'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.asset_name }}
+          path: ${{ matrix.asset_name }}
+
+      # 🔹 Debug: Si falla, subimos la carpeta de compilación para inspeccionar
+      - name: Subir artefactos de compilación (debug)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-${{ matrix.rid }}
+          path: src/bin/Release/net10.0/${{ matrix.rid }}/publish
