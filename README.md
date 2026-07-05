@@ -12,11 +12,11 @@
 
 <img width="664" alt="Main" src="res/docs/Principal.png" />
 
-Una sencilla pero divertida aplicación de bloc de notas para Windows, con una adorable temática de anime para personalizar tu experiencia.
+Una sencilla pero divertida aplicación de bloc de notas multiplataforma, con una adorable temática de anime para personalizar tu experiencia.
 
 ## 🌟 Acerca de este proyecto
 
-**AnimeNotepad** es una aplicación de escritorio creada como una alternativa al clásico bloc de notas de Windows. La principal diferencia es su interfaz, que está diseñada con personajes e imágenes de anime para darle un toque único y personal. Es ideal para quienes pasan mucho tiempo escribiendo notas y quieren un entorno más alegre y visualmente atractivo.
+**AnimeNotepad** es una aplicación de escritorio multiplataforma creada como una alternativa a los clásicos blocs de notas. La principal diferencia es su interfaz, que está diseñada con personajes e imágenes de anime para darle un toque único y personal. Es ideal para quienes pasan mucho tiempo escribiendo notas y quieren un entorno más alegre y visualmente atractivo en cualquier sistema operativo.
 
 ## ✨ Características
 

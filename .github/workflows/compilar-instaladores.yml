@@ -54,7 +54,7 @@ jobs:
         id: get_version
         shell: bash
         run: |
-          VERSION=$(awk -F'[><]' '/<Version>/{print $3}' src/AnimeNotepad.csproj | head -n 1)
+          VERSION=$(dotnet msbuild -getProperty:Version src/AnimeNotepad.csproj)
           if [ -z "$VERSION" ]; then VERSION="0.0.0"; fi
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "version=$VERSION" >> $GITHUB_OUTPUT
