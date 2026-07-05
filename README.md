@@ -39,7 +39,7 @@ Una sencilla pero divertida aplicación de bloc de notas para Windows, con una a
 
 ## 🛠️ Tecnologías y Dependencias
 
-El proyecto está desarrollado en **C# (.NET 10)** y se apoya en las siguientes bibliotecas y tecnologías:
+El proyecto está desarrollado en **C# (.NET 8)** y se apoya en las siguientes bibliotecas y tecnologías:
 
 - [Avalonia UI](https://avaloniaui.net/): Framework de interfaz de usuario para aplicaciones de escritorio multiplataforma.
 - [Internet](https://github.com/RichyKunBv/AnimeNotepad/releases/latest): Herramienta para actualizar la aplicacion
