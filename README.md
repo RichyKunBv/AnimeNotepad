@@ -31,9 +31,9 @@ Una sencilla pero divertida aplicación de bloc de notas multiplataforma, con un
 
 ## 🖼️ Capturas de Pantalla
 
-| Splash Screen | Ventana Principal | Opciones de Fuente y Color |
-| :---: | :---: | :---: |
-| <img width="664" alt="SpashScreen" src="res/docs/SplashScreen.png" /> | <img width="664" alt="Main" src="res/docs/Principal.png" /> | <img width="664" alt="FuenteYColor" src="res/docs/fuente y color.png" />
+| Splash Screen | Ventana Principal Modo Oscuro | Ventana Principal Modo Claro | Opciones de Fuente y Color |
+| :---: | :---: | :---: | :---: |
+| <img width="664" alt="SpashScreen" src="res/docs/SplashScreen.png" /> | <img width="664" alt="Main" src="res/docs/Principal Modo Oscuro.png" /> | <img width="664" alt="Main" src="res/docs/Principal Modo Claro.png" /> | <img width="664" alt="FuenteYColor" src="res/docs/fuente y color.png" />
 
 | Impresión | Acerca de | Actualizar |
 | :---: | :---: | :---: |
