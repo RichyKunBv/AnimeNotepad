@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 
-namespace AnimeNotepad
+namespace AnimeNotepad.Views.Print
 {
     public partial class PrintWindow : Window
     {

@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ani="https://github.com/whistyun/AnimatedImage.Avalonia"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="AnimeNotepad.MainWindow"
+        x:Class="AnimeNotepad.Views.Main.MainWindow"
         Title="AnimeNotepad">
 
     <DockPanel>
@@ -12,138 +12,138 @@
             <MenuItem Header="_Archivo">
                 <MenuItem Header="_Nuevo" Click="MenuNew_Click">
                     <MenuItem.Icon>
-                        <Image Source="avares://AnimeNotepad/res/mnMain/new.PNG"/>
+                        <Image Source="avares://AnimeNotepad/Assets/mnMain/new.PNG"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="_Abrir..." Click="MenuOpen_Click">
                     <MenuItem.Icon>
-                        <Image Source="avares://AnimeNotepad/res/mnMain/open.PNG"/>
+                        <Image Source="avares://AnimeNotepad/Assets/mnMain/open.PNG"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="_Guardar" Click="MenuSave_Click">
                     <MenuItem.Icon>
-                        <Image Source="avares://AnimeNotepad/res/mnMain/save.PNG"/>
+                        <Image Source="avares://AnimeNotepad/Assets/mnMain/save.PNG"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="_Imprimir..." Click="MenuPrint_Click">
                     <MenuItem.Icon>
-                        <Image Source="avares://AnimeNotepad/res/mnMain/print.png"/>
+                        <Image Source="avares://AnimeNotepad/Assets/mnMain/print.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator/>
                 <MenuItem Header="_Salir" Click="MenuExit_Click">
                     <MenuItem.Icon>
-                        <Image Source="avares://AnimeNotepad/res/mnMain/exit.png"/>
+                        <Image Source="avares://AnimeNotepad/Assets/mnMain/exit.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_Edición">
                 <MenuItem Header="_Cortar" Click="MenuCut_Click">
                     <MenuItem.Icon>
-                        <Image Source="avares://AnimeNotepad/res/mnEdit/cut.png"/>
+                        <Image Source="avares://AnimeNotepad/Assets/mnEdit/cut.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="_Copiar" Click="MenuCopy_Click">
                     <MenuItem.Icon>
-                        <Image Source="avares://AnimeNotepad/res/mnEdit/copy.png"/>
+                        <Image Source="avares://AnimeNotepad/Assets/mnEdit/copy.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="_Pegar" Click="MenuPaste_Click">
                     <MenuItem.Icon>
-                        <Image Source="avares://AnimeNotepad/res/mnEdit/paste.png"/>
+                        <Image Source="avares://AnimeNotepad/Assets/mnEdit/paste.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="_Seleccionar Todo" Click="MenuSelectAll_Click">
                     <MenuItem.Icon>
-                        <Image Source="avares://AnimeNotepad/res/mnEdit/sa.png"/>
+                        <Image Source="avares://AnimeNotepad/Assets/mnEdit/sa.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator/>
                 <MenuItem Header="_Fuentes..." Click="MenuFonts_Click">
                     <MenuItem.Icon>
-                        <Image Source="avares://AnimeNotepad/res/mnEdit/font.png"/>
+                        <Image Source="avares://AnimeNotepad/Assets/mnEdit/font.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="_Colores..." Click="MenuColors_Click">
                     <MenuItem.Icon>
-                        <Image Source="avares://AnimeNotepad/res/mnEdit/color.png"/>
+                        <Image Source="avares://AnimeNotepad/Assets/mnEdit/color.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_Ver">
                 <MenuItem Header="_Acercar (+)" Click="MenuZoomIn_Click">
                     <MenuItem.Icon>
-                        <Image Source="avares://AnimeNotepad/res/mnView/acercar.png"/>
+                        <Image Source="avares://AnimeNotepad/Assets/mnView/acercar.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="_Alejar (-)" Click="MenuZoomOut_Click">
                     <MenuItem.Icon>
-                        <Image Source="avares://AnimeNotepad/res/mnView/alejar.PNG"/>
+                        <Image Source="avares://AnimeNotepad/Assets/mnView/alejar.PNG"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_Ayuda">
                 <MenuItem Header="_Manual" Click="MenuManual_Click">
                     <MenuItem.Icon>
-                        <Image Source="avares://AnimeNotepad/res/mnHelp/manual.png"/>
+                        <Image Source="avares://AnimeNotepad/Assets/mnHelp/manual.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="_Buscar actualizaciones" Click="MenuCheckUpdates_Click"/>
                 <Separator/>
                 <MenuItem Header="_Acerca de" Click="MenuAbout_Click">
                     <MenuItem.Icon>
-                        <Image Source="avares://AnimeNotepad/res/mnHelp/ad.png"/>
+                        <Image Source="avares://AnimeNotepad/Assets/mnHelp/ad.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
         </Menu>
 
         <!-- ToolBar simulado -->
-        <Border DockPanel.Dock="Top" Background="#A0A0A0" BorderBrush="Gray" BorderThickness="0,0,0,1">
+        <Border DockPanel.Dock="Top" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="0,0,0,1">
             <StackPanel Orientation="Horizontal" Margin="2">
                 <Button Click="MenuNew_Click" Background="Transparent" BorderThickness="0" Padding="2" CornerRadius="0">
-                    <Image Source="avares://AnimeNotepad/res/mnMain/new.PNG" Width="28" Height="28"/>
+                    <Image Source="avares://AnimeNotepad/Assets/mnMain/new.PNG" Width="28" Height="28"/>
                 </Button>
                 <Button Click="MenuOpen_Click" Background="Transparent" BorderThickness="0" Padding="2" CornerRadius="0">
-                    <Image Source="avares://AnimeNotepad/res/mnMain/open.PNG" Width="28" Height="28"/>
+                    <Image Source="avares://AnimeNotepad/Assets/mnMain/open.PNG" Width="28" Height="28"/>
                 </Button>
                 <Button Click="MenuSave_Click" Background="Transparent" BorderThickness="0" Padding="2" CornerRadius="0">
-                    <Image Source="avares://AnimeNotepad/res/mnMain/save.PNG" Width="28" Height="28"/>
+                    <Image Source="avares://AnimeNotepad/Assets/mnMain/save.PNG" Width="28" Height="28"/>
                 </Button>
                 <Button Click="MenuPrint_Click" Background="Transparent" BorderThickness="0" Padding="2" CornerRadius="0">
-                    <Image Source="avares://AnimeNotepad/res/mnMain/print.png" Width="28" Height="28"/>
+                    <Image Source="avares://AnimeNotepad/Assets/mnMain/print.png" Width="28" Height="28"/>
                 </Button>
                 <Separator Width="1" Background="White" Margin="2,4" Opacity="0.5"/>
                 <Button Click="MenuCopy_Click" Background="Transparent" BorderThickness="0" Padding="2" CornerRadius="0">
-                    <Image Source="avares://AnimeNotepad/res/mnEdit/copy.png" Width="28" Height="28"/>
+                    <Image Source="avares://AnimeNotepad/Assets/mnEdit/copy.png" Width="28" Height="28"/>
                 </Button>
                 <Button Click="MenuPaste_Click" Background="Transparent" BorderThickness="0" Padding="2" CornerRadius="0">
-                    <Image Source="avares://AnimeNotepad/res/mnEdit/paste.png" Width="28" Height="28"/>
+                    <Image Source="avares://AnimeNotepad/Assets/mnEdit/paste.png" Width="28" Height="28"/>
                 </Button>
                 <Button Click="MenuCut_Click" Background="Transparent" BorderThickness="0" Padding="2" CornerRadius="0">
-                    <Image Source="avares://AnimeNotepad/res/mnEdit/cut.png" Width="28" Height="28"/>
+                    <Image Source="avares://AnimeNotepad/Assets/mnEdit/cut.png" Width="28" Height="28"/>
                 </Button>
                 <Separator Width="1" Background="White" Margin="2,4" Opacity="0.5"/>
                 <Button Click="MenuFonts_Click" Background="Transparent" BorderThickness="0" Padding="2" CornerRadius="0">
-                    <Image Source="avares://AnimeNotepad/res/mnEdit/font.png" Width="28" Height="28"/>
+                    <Image Source="avares://AnimeNotepad/Assets/mnEdit/font.png" Width="28" Height="28"/>
                 </Button>
                 <Separator Width="1" Background="White" Margin="2,4" Opacity="0.5"/>
                 <Button Click="MenuZoomIn_Click" Background="Transparent" BorderThickness="0" Padding="2" CornerRadius="0">
-                    <Image Source="avares://AnimeNotepad/res/mnView/acercar.png" Width="28" Height="28"/>
+                    <Image Source="avares://AnimeNotepad/Assets/mnView/acercar.png" Width="28" Height="28"/>
                 </Button>
                 <Button Click="MenuZoomOut_Click" Background="Transparent" BorderThickness="0" Padding="2" CornerRadius="0">
-                    <Image Source="avares://AnimeNotepad/res/mnView/alejar.PNG" Width="28" Height="28"/>
+                    <Image Source="avares://AnimeNotepad/Assets/mnView/alejar.PNG" Width="28" Height="28"/>
                 </Button>
             </StackPanel>
         </Border>
 
         <!-- Status Bar Simulado -->
-        <Border DockPanel.Dock="Bottom" Background="#F0F0F0" Padding="5,2" BorderBrush="LightGray" BorderThickness="0,1,0,0">
+        <Border DockPanel.Dock="Bottom" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}" Padding="5,2" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="0,1,0,0">
             <StackPanel Orientation="Horizontal" Spacing="10">
-                <TextBlock Text="Nombre:" FontSize="12" Foreground="Black"/>
-                <TextBlock Text="Peso:" FontSize="12" Foreground="Black"/>
-                <TextBlock Text="Creacion:" FontSize="12" Foreground="Black"/>
-                <TextBlock Text="Modificacion:" FontSize="12" Foreground="Black"/>
+                <TextBlock Text="Nombre:" FontSize="12" />
+                <TextBlock Text="Peso:" FontSize="12" />
+                <TextBlock Text="Creacion:" FontSize="12" />
+                <TextBlock Text="Modificacion:" FontSize="12" />
             </StackPanel>
         </Border>
 
@@ -154,14 +154,14 @@
             </Grid.ColumnDefinitions>
             
             <!-- Panel Izquierdo (Gris Claro) -->
-            <Border Grid.Column="0" Background="#EAEAEA" BorderBrush="Gray" BorderThickness="0,0,1,0">
-                <Image ani:ImageBehavior.AnimatedSource="avares://AnimeNotepad/res/zero two.gif" 
+            <Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="0,0,1,0">
+                <Image ani:ImageBehavior.AnimatedSource="avares://AnimeNotepad/Assets/zero two.gif" 
                        Width="110" 
                        VerticalAlignment="Top" HorizontalAlignment="Center"
                        Margin="0,10,0,0" Stretch="Uniform"/>
             </Border>
             
-            <!-- Área de Texto Blanca -->
+            <!-- Área de Texto -->
             <TextBox Grid.Column="1" Name="EditorTextBox" 
                      AcceptsReturn="True" 
                      AcceptsTab="True" 
@@ -170,18 +170,16 @@
                      VerticalAlignment="Stretch"
                      FontFamily="Segoe UI, Inter"
                      FontSize="14"
-                     Foreground="Black"
-                     Background="White"
+                     Background="Transparent"
                      BorderThickness="0"
-                     Padding="8"
-                     CaretBrush="Black">
+                     Padding="8">
                 <TextBox.Styles>
                     <Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
-                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Background" Value="Transparent"/>
                         <Setter Property="BorderThickness" Value="0"/>
                     </Style>
                     <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
-                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Background" Value="Transparent"/>
                         <Setter Property="BorderThickness" Value="0"/>
                     </Style>
                 </TextBox.Styles>

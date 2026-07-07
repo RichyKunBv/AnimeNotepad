@@ -6,7 +6,12 @@ using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
 using Avalonia.Media;
 
-namespace AnimeNotepad;
+using AnimeNotepad.Views.About;
+using AnimeNotepad.Views.FontColor;
+using AnimeNotepad.Views.Manual;
+using AnimeNotepad.Views.Print;
+
+namespace AnimeNotepad.Views.Main;
 
 public partial class MainWindow : Window
 {

@@ -2,6 +2,8 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 
+using AnimeNotepad.Views.Splash;
+
 namespace AnimeNotepad;
 
 public partial class App : Application

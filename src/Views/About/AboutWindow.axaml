@@ -4,14 +4,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnimeNotepad"
         mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="250"
-        x:Class="AnimeNotepad.AboutWindow"
+        x:Class="AnimeNotepad.Views.About.AboutWindow"
         Title="Acerca de AnimeNotepad"
         Width="650" Height="350"
         WindowStartupLocation="CenterOwner"
         CanResize="False">
     <Grid Background="Black">
         <!-- Imagen del lado derecho -->
-        <Image Source="avares://AnimeNotepad/res/ScreenSplash.jpg" Stretch="UniformToFill" HorizontalAlignment="Right" Width="400"/>
+        <Image Source="avares://AnimeNotepad/Assets/ScreenSplash.jpg" Stretch="UniformToFill" HorizontalAlignment="Right" Width="400"/>
         
         <!-- Texto Izquierdo -->
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,0,0" Width="300">
@@ -23,7 +23,7 @@
         <!-- Footer Izquierdo -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,0,0,20" Spacing="20">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="10">
-                <TextBlock Text="2025   ©" FontSize="14" FontFamily="Segoe UI, Inter" Foreground="White" />
+                <TextBlock Text="{x:Static local:CopyRight.Texto}" FontSize="14" FontFamily="Segoe UI, Inter" Foreground="White" />
                 <TextBlock Text="{x:Static local:Verzion.Texto}" FontSize="14" FontFamily="Segoe UI, Inter" Foreground="White" />
             </StackPanel>
             <Button Content="Aceptar" Click="CloseButton_Click" Background="Transparent" Foreground="White" BorderBrush="#0078D7" BorderThickness="2" Padding="15,5" CornerRadius="0"/>

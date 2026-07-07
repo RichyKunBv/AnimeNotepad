@@ -2,7 +2,9 @@ using System;
 using Avalonia.Controls;
 using Avalonia.Threading;
 
-namespace AnimeNotepad;
+using AnimeNotepad.Views.Main;
+
+namespace AnimeNotepad.Views.Splash;
 
 public partial class SplashScreen : Window
 {

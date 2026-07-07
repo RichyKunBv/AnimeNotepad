@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 
-namespace AnimeNotepad;
+namespace AnimeNotepad.Views.About;
 
 public partial class AboutWindow : Window
 {

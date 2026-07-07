@@ -6,7 +6,7 @@ using Avalonia.Controls.Shapes;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 
-namespace AnimeNotepad
+namespace AnimeNotepad.Views.FontColor
 {
     public class FontColorDialogResult
     {

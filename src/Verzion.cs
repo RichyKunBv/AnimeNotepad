@@ -8,6 +8,6 @@ namespace AnimeNotepad
 {
     public static class Verzion
     {
-        public static string Texto { get; set; } = "V2.0.1";
+        public static string Texto { get; set; } = "V2.1.0";
     }
 }
