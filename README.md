@@ -1,6 +1,6 @@
 # AnimeNotepad - Notepad con Temática de Anime
 
-[![Versión](https://img.shields.io/badge/Versión-2.0-blue.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases)
+[![Versión](https://img.shields.io/badge/Versión-2.1-blue.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases)
 [![Estable](https://img.shields.io/badge/Estado-Estable-red.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases/latest)
 [![Licencia](https://img.shields.io/badge/Licencia-Apache-green.svg)](https://github.com/RichyKunBv/AnimeNotepad/blob/main/LICENSE)
 [![Lenguaje](https://img.shields.io/badge/Lenguaje-C%23.NET-lightgrey.svg)](https://dotnet.microsoft.com/es-es/download/dotnet/10.0)
@@ -26,6 +26,8 @@ Una sencilla pero divertida aplicación de bloc de notas multiplataforma, con un
     * Selecciona diferentes colores para la fuente.
 * **Impresión:** Envía tus notas directamente a una impresora.
 * **Interfaz con temática de anime:** ¡Cada rincón de la aplicación tiene un toque de "monas chinas"!
+* **Modo Claro y Modo Oscuro:** Cambio automatico del modo oscuro o claro dependiendo de la configuracion de tu sistema
+
 
 ## 🖼️ Capturas de Pantalla
 

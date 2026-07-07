@@ -46,8 +46,8 @@ detect_repository_location() {
 
 detect_repository_location
 
-MACOS_ARM_APP="$HOME/AnimeNotepadARM64macOS/AnimeNotepad.app"
-MACOS_X64_APP="$HOME/AnimeNotepadX86_64macOS/AnimeNotepad.app"
+MACOS_ARM_APP="$HOME/AnimeNotepadARM64macOS/$nombre.app"
+MACOS_X64_APP="$HOME/AnimeNotepadX86_64macOS/$nombre.app"
 
 WIN_X64_DIR="$HOME/AnimeNotepadX86_64Windows/"
 WIN_ARM_DIR="$HOME/AnimeNotepadARM64Windows/"
