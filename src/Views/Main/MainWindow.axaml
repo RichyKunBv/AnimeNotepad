@@ -5,6 +5,7 @@
         xmlns:ani="https://github.com/whistyun/AnimatedImage.Avalonia"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AnimeNotepad.Views.Main.MainWindow"
+        Icon="avares://AnimeNotepad/Assets/icon.ico"
         Title="AnimeNotepad">
 
     <DockPanel>
