@@ -41,7 +41,7 @@ Una sencilla pero divertida aplicación de bloc de notas multiplataforma, con un
 
 ## 🛠️ Tecnologías y Dependencias
 
-El proyecto está desarrollado en **C# (.NET 8)** y se apoya en las siguientes bibliotecas y tecnologías:
+El proyecto está desarrollado en **C# (.NET 10)** y se apoya en las siguientes bibliotecas y tecnologías:
 
 - [Avalonia UI](https://avaloniaui.net/): Framework de interfaz de usuario para aplicaciones de escritorio multiplataforma.
 - [Internet](https://github.com/RichyKunBv/AnimeNotepad/releases/latest): Herramienta para actualizar la aplicacion
@@ -62,7 +62,7 @@ sudo xattr -cr /Applications/AnimeNotepad.app
 ## 🚀 Cómo compilar y ejecutar
 
 ### Requisitos Previos
-- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
 
 ### Compilación y Ejecución
 Asegúrate de ejecutar los comandos desde el directorio raíz del proyecto (donde se encuentra `AnimeNotepad.slnx`):

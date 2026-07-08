@@ -30,7 +30,7 @@ Section "Instalación" SecInstall
     SetOutPath "$INSTDIR"
     
     ; Copiar todos los archivos desde la carpeta de publicación (se pasa por comando)
-    File /r "${PUBLISH_DIR}"
+    File /r "${PUBLISH_DIR}\*"
     
     ; Crear desinstalador
     WriteUninstaller "$INSTDIR\Uninstall.exe"
