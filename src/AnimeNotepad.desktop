@@ -6,5 +6,6 @@ Comment=Aplicación para la toma de notas con temática de anime.
 Exec=./AnimeNotepad
 Icon=./icon.png
 Terminal=false
-Categories=Office;Notes;TextEditor;txt;
+Categories=Utility;TextEditor;
+MimeType=text/plain;
 StartupNotify=true
