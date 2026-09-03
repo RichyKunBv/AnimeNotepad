@@ -1,6 +1,7 @@
 # Compilaciones y artefactos de salida
 **/bin/
 **/obj/
+**/publish_out/
 TestResults/
 artifacts/
 

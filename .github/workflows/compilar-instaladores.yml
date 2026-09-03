@@ -62,7 +62,7 @@ jobs:
       - name: Compilar aplicación
         run: |
           cd src
-          dotnet publish -c Release -r ${{ matrix.rid }} --self-contained -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=None
+          dotnet publish -c Release -r ${{ matrix.rid }} --self-contained -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=None -o publish_out
 
       # --- EMPAQUETADO WINDOWS ---
       - name: Generar Instalador (Windows)
@@ -71,7 +71,7 @@ jobs:
         run: |
           @echo on
           echo Eliminando .pdb...
-          del /q /s "src\bin\Release\net10.0\${{ matrix.rid }}\publish\*.pdb" 2>nul || ver>nul
+          del /q /s "src\publish_out\*.pdb" 2>nul || ver>nul
 
           if not exist "C:\PROGRA~2\NSIS\makensis.exe" (
             echo Instalando NSIS...
@@ -91,7 +91,7 @@ jobs:
           )
 
           echo Ejecutando NSIS...
-          "C:\PROGRA~2\NSIS\makensis.exe" /DARCH=${{ matrix.arch }} /DVERSION=${{ env.VERSION }} /DPUBLISH_DIR=${{ github.workspace }}\src\bin\Release\net10.0\${{ matrix.rid }}\publish /DOUTFILE=${{ github.workspace }}\${{ matrix.asset_name }} scripts\build\installer.nsi
+          "C:\PROGRA~2\NSIS\makensis.exe" /DARCH=${{ matrix.arch }} /DVERSION="${{ env.VERSION }}" "/DPUBLISH_DIR=${{ github.workspace }}\src\publish_out" "/DOUTFILE=${{ github.workspace }}\${{ matrix.asset_name }}" scripts\build\installer.nsi
 
           echo Verificando instalador en la raíz...
           dir "${{ github.workspace }}\${{ matrix.asset_name }}"
@@ -99,6 +99,38 @@ jobs:
             echo ERROR: El instalador no se generó en la ubicación esperada.
             exit /b 1
           )
+
+      - name: Generar paquete MSIX (Windows)
+        if: runner.os == 'Windows'
+        shell: cmd
+        run: |
+          @echo on
+          echo Preparando archivos para MSIX...
+          
+          copy "src\Assets\icon.png" "src\publish_out\StoreLogo.png"
+          copy "src\Assets\icon.png" "src\publish_out\Square150x150Logo.png"
+          copy "src\Assets\icon.png" "src\publish_out\Square44x44Logo.png"
+          copy "src\Assets\icon.png" "src\publish_out\SplashScreen.png"
+
+          echo Parseando version para MSIX (debe ser X.Y.Z.0)...
+          for /f "tokens=1,2,3 delims=." %%a in ("${{ env.VERSION }}") do (
+            set MSIX_VERSION=%%a.%%b.%%c.0
+          )
+          if "%MSIX_VERSION%"=="..0" set MSIX_VERSION=1.0.0.0
+          
+          echo Generando AppxManifest.xml...
+          powershell -Command "(Get-Content src\AppxManifest.xml.template) -replace '@VERSION@', $env:MSIX_VERSION -replace '@ARCH@', '${{ matrix.arch }}' | Out-File -Encoding UTF8 src\publish_out\AppxManifest.xml"
+
+          echo Buscando makeappx.exe...
+          set MAKEAPPX_PATH=
+          for /f "delims=" %%i in ('dir /b /s "C:\Program Files (x86)\Windows Kits\10\bin\*makeappx.exe" 2^>nul ^| findstr /i "x64\\makeappx.exe"') do set MAKEAPPX_PATH="%%i"
+          if not defined MAKEAPPX_PATH (
+            echo ERROR: No se encontró makeappx.exe
+            exit /b 1
+          )
+          
+          echo Empaquetando con makeappx...
+          %MAKEAPPX_PATH% pack /d src\publish_out /p "${{ github.workspace }}\AnimeNotepad-${{ matrix.arch }}.msix" /o
 
       # --- EMPAQUETADO LINUX ---
       - name: Preparar AppDir (Linux)
@@ -108,7 +140,7 @@ jobs:
           mkdir -p AppDir/usr/share/applications
           mkdir -p AppDir/usr/share/icons/hicolor/256x256/apps
           
-          cp -r src/bin/Release/net10.0/${{ matrix.rid }}/publish/* AppDir/usr/bin/
+          cp -r src/publish_out/* AppDir/usr/bin/
           chmod +x AppDir/usr/bin/AnimeNotepad
           
           cp src/Assets/icon.png AppDir/usr/share/icons/hicolor/256x256/apps/AnimeNotepad.png
@@ -160,7 +192,7 @@ jobs:
           mkdir -p "$APP_DIR/Contents/MacOS"
           mkdir -p "$APP_DIR/Contents/Resources"
           
-          cp -a src/bin/Release/net10.0/${{ matrix.rid }}/publish/. "$APP_DIR/Contents/MacOS/"
+          cp -a src/publish_out/. "$APP_DIR/Contents/MacOS/"
           
           cp src/Assets/icon.icns "$APP_DIR/Contents/Resources/" || true
           cp src/Info.plist.template "$APP_DIR/Contents/Info.plist"
@@ -195,14 +227,14 @@ jobs:
         if: github.event_name == 'release'
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ github.workspace }}/${{ matrix.asset_name }}
+          files: ${{ github.workspace }}/AnimeNotepad*
           
       - name: Subir Artefacto para PR o Manual
         if: github.event_name != 'release'
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.asset_name }}
-          path: ${{ matrix.asset_name }}
+          name: installers-${{ matrix.rid }}
+          path: ${{ github.workspace }}/AnimeNotepad*
 
       # 🔹 Debug: Si falla, subimos la carpeta de compilación para inspeccionar
       - name: Subir artefactos de compilación (debug)
@@ -210,4 +242,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: debug-${{ matrix.rid }}
-          path: src/bin/Release/net10.0/${{ matrix.rid }}/publish
+          path: src/publish_out
