@@ -9,7 +9,10 @@
         Width="500" Height="300"
         WindowDecorations="None"
         WindowStartupLocation="CenterScreen"
-        Background="#2D2D30">
+        Background="#2D2D30"
+        PointerPressed="SplashScreen_PointerPressed"
+        KeyDown="SplashScreen_KeyDown"
+        Focusable="True">
     <Panel Background="Black">
         <!-- Imagen del lado derecho -->
         <Image Source="avares://AnimeNotepad/Assets/ScreenSplash.jpg" Stretch="UniformToFill" HorizontalAlignment="Right" Width="500"/>

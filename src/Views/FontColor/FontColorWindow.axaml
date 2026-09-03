@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TabControl Grid.Row="0">
+        <TabControl Name="SettingsTabControl" Grid.Row="0">
             <!-- Pestaña Fuente -->
             <TabItem Header="Fuente">
                 <Grid>
@@ -25,7 +25,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     
-                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,20,10,10" Spacing="10">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,15,10,10" Spacing="10">
                         <TextBlock Text="Fuente:" VerticalAlignment="Center" />
                         <ComboBox Name="FontFamilyComboBox" Width="200" MaxDropDownHeight="250"/>
                         
@@ -33,40 +33,58 @@
                         <NumericUpDown Name="FontSizeUpDown" Minimum="8" Maximum="72" Value="14" Width="70" FormatString="0"/>
                     </StackPanel>
                     
-                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20,10,10,10" Spacing="20">
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10,5,10,10" Spacing="20">
                         <CheckBox Name="ChkBold" Content="Negrita" />
                         <CheckBox Name="ChkItalic" Content="Cursiva" />
-                        <CheckBox Name="ChkUnderline" Content="Subrayado" />
                     </StackPanel>
 
-                    <Image Grid.Row="2" Source="avares://AnimeNotepad/Assets/fontcolor/zero two.png" 
-                           HorizontalAlignment="Left" VerticalAlignment="Bottom" 
-                           Margin="10" Width="100"/>
+                    <Grid Grid.Row="2" ColumnDefinitions="Auto,*" Margin="10,5,10,10">
+                        <Image Grid.Column="0" Source="avares://AnimeNotepad/Assets/fontcolor/zero two.png" 
+                               HorizontalAlignment="Left" VerticalAlignment="Bottom" 
+                               Width="80" Height="80" Margin="0,0,10,0"/>
+                        <Border Grid.Column="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
+                                BorderThickness="1" CornerRadius="4" Padding="10" 
+                                Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}" 
+                                VerticalAlignment="Stretch">
+                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                <TextBlock Name="PreviewTextBlock" Text="AaBbYyZz 123&#x0a;AnimeNotepad Texto de muestra" 
+                                           VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                           TextAlignment="Center" TextWrapping="Wrap"/>
+                            </ScrollViewer>
+                        </Border>
+                    </Grid>
                 </Grid>
             </TabItem>
             
-            <!-- Pestaña Avanzado (Color) -->
-            <TabItem Header="Avanzado">
-                <Grid Margin="20">
+            <!-- Pestaña Color -->
+            <TabItem Header="Color">
+                <Grid Margin="15">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Selecciona el color del texto:" Margin="0,0,0,10"/>
                     <WrapPanel Grid.Row="1" Orientation="Horizontal">
-                        <Button Background="Black" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
-                        <Button Background="White" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20" BorderBrush="Gray" BorderThickness="1"/>
-                        <Button Background="Red" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
-                        <Button Background="Blue" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
-                        <Button Background="Green" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
-                        <Button Background="Yellow" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
-                        <Button Background="Purple" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
-                        <Button Background="Orange" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
-                        <Button Background="Pink" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
-                        <Button Background="Cyan" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
-                        <Button Background="Brown" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
-                        <Button Background="Gray" Width="40" Height="40" Margin="5" Click="ColorButton_Click" CornerRadius="20"/>
+                        <Button Background="Black" Width="36" Height="36" Margin="4" Click="ColorButton_Click" CornerRadius="18" ToolTip.Tip="Negro"/>
+                        <Button Background="White" Width="36" Height="36" Margin="4" Click="ColorButton_Click" CornerRadius="18" BorderBrush="Gray" BorderThickness="1" ToolTip.Tip="Blanco"/>
+                        <Button Background="#E53935" Width="36" Height="36" Margin="4" Click="ColorButton_Click" CornerRadius="18" ToolTip.Tip="Rojo"/>
+                        <Button Background="#1E88E5" Width="36" Height="36" Margin="4" Click="ColorButton_Click" CornerRadius="18" ToolTip.Tip="Azul"/>
+                        <Button Background="#43A047" Width="36" Height="36" Margin="4" Click="ColorButton_Click" CornerRadius="18" ToolTip.Tip="Verde"/>
+                        <Button Background="#FDD835" Width="36" Height="36" Margin="4" Click="ColorButton_Click" CornerRadius="18" ToolTip.Tip="Amarillo"/>
+                        <Button Background="#8E24AA" Width="36" Height="36" Margin="4" Click="ColorButton_Click" CornerRadius="18" ToolTip.Tip="Púrpura"/>
+                        <Button Background="#FB8C00" Width="36" Height="36" Margin="4" Click="ColorButton_Click" CornerRadius="18" ToolTip.Tip="Naranja"/>
+                        <Button Background="#E91E63" Width="36" Height="36" Margin="4" Click="ColorButton_Click" CornerRadius="18" ToolTip.Tip="Rosa"/>
+                        <Button Background="#00ACC1" Width="36" Height="36" Margin="4" Click="ColorButton_Click" CornerRadius="18" ToolTip.Tip="Cian"/>
+                        <Button Background="#6D4C41" Width="36" Height="36" Margin="4" Click="ColorButton_Click" CornerRadius="18" ToolTip.Tip="Café"/>
+                        <Button Background="#757575" Width="36" Height="36" Margin="4" Click="ColorButton_Click" CornerRadius="18" ToolTip.Tip="Gris"/>
                     </WrapPanel>
+                    
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,15,0,0" Spacing="10" VerticalAlignment="Center">
+                        <Button Content="Color automático del tema" Click="ResetColor_Click" Padding="8,4"/>
+                        <TextBlock Text="Color actual:" VerticalAlignment="Center"/>
+                        <Border Name="SelectedColorPreview" Width="24" Height="24" CornerRadius="12" BorderBrush="Gray" BorderThickness="1"/>
+                    </StackPanel>
                 </Grid>
             </TabItem>
         </TabControl>

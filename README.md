@@ -1,6 +1,7 @@
 # AnimeNotepad - Notepad con Temática de Anime
 
-[![Versión](https://img.shields.io/badge/Versión-2.1.3-blue.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases)
+[![Versión](https://img.shields.io/badge/Versión-2.2.0-blue.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases)
+[![Codename](https://img.shields.io/badge/Codename-Strelizia-ff69b4.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases/latest)
 [![Estable](https://img.shields.io/badge/Estado-Estable-red.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases/latest)
 [![Licencia](https://img.shields.io/badge/Licencia-Apache-green.svg)](https://github.com/RichyKunBv/AnimeNotepad/blob/main/LICENSE)
 [![Lenguaje](https://img.shields.io/badge/Lenguaje-C%23.NET-lightgrey.svg)](https://dotnet.microsoft.com/es-es/download/dotnet/10.0)
@@ -20,13 +21,18 @@ Una sencilla pero divertida aplicación de bloc de notas multiplataforma, con un
 
 ## ✨ Características
 
-* **Edición de texto básica:** Todas las funcionalidades que esperas de un bloc de notas (abrir, guardar, cortar, pegar, etc.).
-* **Personalización de apariencia:**
-    * Cambia la fuente y el tamaño del texto a tu gusto.
-    * Selecciona diferentes colores para la fuente.
-* **Impresión:** Envía tus notas directamente a una impresora.
-* **Interfaz con temática de anime:** ¡Cada rincón de la aplicación tiene un toque de "monas chinas"!
-* **Modo Claro y Modo Oscuro:** Cambio automatico del modo oscuro o claro dependiendo de la configuracion de tu sistema
+* **Edición de texto completa:** Todas las funcionalidades que esperas de un bloc de notas (abrir, guardar, guardar como, cortar, copiar, pegar, deshacer, rehacer y seleccionar todo).
+* **Prevención de pérdida de datos:** Detección de cambios sin guardar (`*`), confirmación inteligente antes de cerrar o abrir un nuevo documento.
+* **Barra de estado en tiempo real:** Conteo dinámico de líneas, caracteres totales, posición exacta del cursor (Línea / Columna), estado de guardado y codificación UTF-8.
+* **Atajos de teclado nativos:** Soporte completo de combinaciones de teclas estándar (`Ctrl+N`, `Ctrl+O`, `Ctrl+S`, `Ctrl+Shift+S`, `Ctrl+Z`, `Ctrl+Y`, `Ctrl+P`, etc.).
+* **Personalización de fuentes y colores con Vista Previa:**
+    * Selector de tipografías del sistema con estilos (Negrita, Cursiva) y tamaño ajustable.
+    * Paleta de colores para texto con opción de color automático adaptativo al tema.
+    * Caja de muestra en vivo (*Live Preview*) antes de aplicar cambios.
+* **Zoom sincronizado:** Acercar, alejar y restablecer zoom (100%) manteniendo consistencia con el tamaño de fuente.
+* **Impresión:** Envía tus notas directamente a la cola de impresión de tu sistema operativo.
+* **Modo Claro y Modo Oscuro:** Adaptación automática al tema de tu sistema operativo, garantizando legibilidad óptima.
+* **Interfaz temática:** Detalles visuales y animación inspirados en el anime (Zero Two).
 
 
 ## 🖼️ Capturas de Pantalla

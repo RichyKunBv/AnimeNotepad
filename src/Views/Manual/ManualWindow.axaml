@@ -52,13 +52,43 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="• " FontWeight="Bold" FontSize="16"/>
-                        <TextBlock Text="Ctrl + S: " FontWeight="Bold" FontSize="16"/>
-                        <TextBlock Text="Guardar" FontSize="16"/>
+                        <TextBlock Text="Ctrl + O: " FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="Abrir archivo" FontSize="16"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="• " FontWeight="Bold" FontSize="16"/>
-                        <TextBlock Text="Ctrl + O: " FontWeight="Bold" FontSize="16"/>
-                        <TextBlock Text="Abrir archivo" FontSize="16"/>
+                        <TextBlock Text="Ctrl + S: " FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="Guardar archivo" FontSize="16"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="• " FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="Ctrl + Shift + S: " FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="Guardar como..." FontSize="16"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="• " FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="Ctrl + Z: " FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="Deshacer" FontSize="16"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="• " FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="Ctrl + Y: " FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="Rehacer" FontSize="16"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="• " FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="Ctrl + P: " FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="Imprimir" FontSize="16"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="• " FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="Ctrl + + / -: " FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="Acercar / Alejar Zoom" FontSize="16"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="• " FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="Ctrl + 0: " FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="Restablecer Zoom" FontSize="16"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

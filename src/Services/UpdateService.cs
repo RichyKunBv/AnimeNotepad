@@ -15,28 +15,36 @@ public enum UpdateStatus
 
 public static class UpdateService
 {
+    private static readonly HttpClient _httpClient = new HttpClient
+    {
+        Timeout = TimeSpan.FromSeconds(10)
+    };
+
+    static UpdateService()
+    {
+        _httpClient.DefaultRequestHeaders.Add("User-Agent", "AnimeNotepad");
+    }
+
     public static async Task<(UpdateStatus status, string? latestVersion)> CheckForUpdatesAsync(string currentVersion)
     {
         try
         {
-            using var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("User-Agent", "AnimeNotepad");
-            
-            var response = await client.GetAsync("https://api.github.com/repos/RichyKunBv/AnimeNotepad/releases/latest");
+            var response = await _httpClient.GetAsync("https://api.github.com/repos/RichyKunBv/AnimeNotepad/releases/latest");
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
-                var doc = JsonDocument.Parse(json);
+                using var doc = JsonDocument.Parse(json);
                 if (doc.RootElement.TryGetProperty("tag_name", out var tagElement))
                 {
                     string latestTag = tagElement.GetString() ?? string.Empty;
-                    string latestVersionStr = latestTag.TrimStart('v', 'V');
-                    
-                    if (Version.TryParse(currentVersion, out var curr) && Version.TryParse(latestVersionStr, out var latest))
+                    string cleanLatest = CleanVersionString(latestTag);
+                    string cleanCurrent = CleanVersionString(currentVersion);
+
+                    if (Version.TryParse(cleanCurrent, out var curr) && Version.TryParse(cleanLatest, out var latest))
                     {
-                        if (curr < latest) return (UpdateStatus.Outdated, latestVersionStr);
-                        if (curr == latest) return (UpdateStatus.UpToDate, latestVersionStr);
-                        if (curr > latest) return (UpdateStatus.Newer, latestVersionStr);
+                        if (curr < latest) return (UpdateStatus.Outdated, latestTag);
+                        if (curr == latest) return (UpdateStatus.UpToDate, latestTag);
+                        if (curr > latest) return (UpdateStatus.Newer, latestTag);
                     }
                 }
             }
@@ -46,6 +54,14 @@ public static class UpdateService
             Console.WriteLine($"[UpdateChecker] Error checking for updates: {ex.Message}");
         }
         return (UpdateStatus.Error, null);
+    }
+
+    private static string CleanVersionString(string rawVersion)
+    {
+        if (string.IsNullOrWhiteSpace(rawVersion)) return "0.0.0.0";
+        var trimmed = rawVersion.Trim().TrimStart('v', 'V');
+        var match = System.Text.RegularExpressions.Regex.Match(trimmed, @"^[0-9]+(\.[0-9]+)+");
+        return match.Success ? match.Value : trimmed;
     }
 
     public static string GetDirectDownloadUrl()

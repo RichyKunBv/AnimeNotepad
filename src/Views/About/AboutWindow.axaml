@@ -25,6 +25,7 @@
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="10">
                 <TextBlock Text="{x:Static local:CopyRight.Texto}" FontSize="14" FontFamily="Segoe UI, Inter" Foreground="White" />
                 <TextBlock Text="{x:Static local:Verzion.Texto}" FontSize="14" FontFamily="Segoe UI, Inter" Foreground="White" />
+                <TextBlock Text="{x:Static local:CodeName.Texto}" FontSize="14" FontFamily="Segoe UI, Inter" Foreground="White" />
             </StackPanel>
             <Button Content="Aceptar" Click="CloseButton_Click" Background="Transparent" Foreground="White" BorderBrush="#0078D7" BorderThickness="2" Padding="15,5" CornerRadius="0"/>
         </StackPanel>

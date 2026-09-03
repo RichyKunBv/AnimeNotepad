@@ -1,8 +1,6 @@
 using System;
 using System.Linq;
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Shapes;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 
@@ -14,33 +12,28 @@ namespace AnimeNotepad.Views.FontColor
         public double FontSize { get; set; }
         public FontWeight FontWeight { get; set; }
         public FontStyle FontStyle { get; set; }
-        public TextDecorationCollection? TextDecorations { get; set; }
-        public ISolidColorBrush? Foreground { get; set; }
+        public IBrush? Foreground { get; set; }
+        public bool ColorChanged { get; set; }
     }
 
     public partial class FontColorWindow : Window
     {
         public FontColorDialogResult? Result { get; private set; }
-        private ISolidColorBrush _selectedColor = Brushes.Black;
+        private IBrush? _selectedColor = null;
+        private bool _hasExplicitColor = false;
 
         public FontColorWindow()
         {
             InitializeComponent();
-
-            var fontFamilyComboBox = this.FindControl<ComboBox>("FontFamilyComboBox");
-            if (fontFamilyComboBox != null)
-            {
-                var fonts = FontManager.Current.SystemFonts.Select(f => f.Name).OrderBy(f => f).ToList();
-                fontFamilyComboBox.ItemsSource = fonts;
-                fontFamilyComboBox.SelectedItem = "Segoe UI";
-            }
+            SetupFonts(null);
+            SetupEventHandlers();
+            UpdatePreview();
         }
 
-        public FontColorWindow(FontFamily currentFont, double currentSize, FontWeight currentWeight, FontStyle currentStyle, TextDecorationCollection? currentDecorations, IBrush? currentBrush) : this()
+        public FontColorWindow(FontFamily? currentFont, double currentSize, FontWeight currentWeight, FontStyle currentStyle, TextDecorationCollection? currentDecorations, IBrush? currentBrush)
         {
-            var fontFamilyComboBox = this.FindControl<ComboBox>("FontFamilyComboBox");
-            if (fontFamilyComboBox != null && currentFont != null)
-                fontFamilyComboBox.SelectedItem = currentFont.Name;
+            InitializeComponent();
+            SetupFonts(currentFont);
 
             var fontSizeUpDown = this.FindControl<NumericUpDown>("FontSizeUpDown");
             if (fontSizeUpDown != null)
@@ -54,21 +47,123 @@ namespace AnimeNotepad.Views.FontColor
             if (chkItalic != null)
                 chkItalic.IsChecked = currentStyle == FontStyle.Italic;
 
-            var chkUnderline = this.FindControl<CheckBox>("ChkUnderline");
-            if (chkUnderline != null)
-                chkUnderline.IsChecked = currentDecorations != null && currentDecorations.Count > 0;
-
             if (currentBrush is ISolidColorBrush scb)
             {
                 _selectedColor = scb;
+                _hasExplicitColor = true;
             }
+
+            SetupEventHandlers();
+            UpdatePreview();
+        }
+
+        public void SelectTab(int tabIndex)
+        {
+            var tabControl = this.FindControl<TabControl>("SettingsTabControl");
+            if (tabControl != null && tabIndex >= 0 && tabIndex < tabControl.ItemCount)
+            {
+                tabControl.SelectedIndex = tabIndex;
+            }
+        }
+
+        private void SetupFonts(FontFamily? currentFont)
+        {
+            var fontFamilyComboBox = this.FindControl<ComboBox>("FontFamilyComboBox");
+            if (fontFamilyComboBox == null) return;
+
+            var fonts = FontManager.Current.SystemFonts.Select(f => f.Name).OrderBy(f => f).ToList();
+            fontFamilyComboBox.ItemsSource = fonts;
+
+            string? targetFontName = currentFont?.Name;
+            if (!string.IsNullOrEmpty(targetFontName))
+            {
+                var match = fonts.FirstOrDefault(f => string.Equals(f, targetFontName, StringComparison.OrdinalIgnoreCase));
+                if (match != null)
+                {
+                    fontFamilyComboBox.SelectedItem = match;
+                    return;
+                }
+            }
+
+            if (fonts.Contains("Inter"))
+                fontFamilyComboBox.SelectedItem = "Inter";
+            else if (fonts.Contains("Segoe UI"))
+                fontFamilyComboBox.SelectedItem = "Segoe UI";
+            else if (fonts.Contains("Arial"))
+                fontFamilyComboBox.SelectedItem = "Arial";
+            else if (fonts.Count > 0)
+                fontFamilyComboBox.SelectedIndex = 0;
+        }
+
+        private void SetupEventHandlers()
+        {
+            var fontFamilyComboBox = this.FindControl<ComboBox>("FontFamilyComboBox");
+            if (fontFamilyComboBox != null)
+                fontFamilyComboBox.SelectionChanged += (_, _) => UpdatePreview();
+
+            var fontSizeUpDown = this.FindControl<NumericUpDown>("FontSizeUpDown");
+            if (fontSizeUpDown != null)
+                fontSizeUpDown.ValueChanged += (_, _) => UpdatePreview();
+
+            var chkBold = this.FindControl<CheckBox>("ChkBold");
+            if (chkBold != null)
+                chkBold.IsCheckedChanged += (_, _) => UpdatePreview();
+
+            var chkItalic = this.FindControl<CheckBox>("ChkItalic");
+            if (chkItalic != null)
+                chkItalic.IsCheckedChanged += (_, _) => UpdatePreview();
         }
 
         private void ColorButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button btn && btn.Background is ISolidColorBrush brush)
+            if (sender is Button btn && btn.Background != null)
             {
-                _selectedColor = brush;
+                _selectedColor = btn.Background;
+                _hasExplicitColor = true;
+                UpdatePreview();
+            }
+        }
+
+        private void ResetColor_Click(object sender, RoutedEventArgs e)
+        {
+            _selectedColor = null;
+            _hasExplicitColor = false;
+            UpdatePreview();
+        }
+
+        private void UpdatePreview()
+        {
+            var preview = this.FindControl<TextBlock>("PreviewTextBlock");
+            if (preview == null) return;
+
+            var fontStr = this.FindControl<ComboBox>("FontFamilyComboBox")?.SelectedItem as string;
+            if (!string.IsNullOrEmpty(fontStr))
+            {
+                preview.FontFamily = new FontFamily(fontStr);
+            }
+
+            var sizeUpDown = this.FindControl<NumericUpDown>("FontSizeUpDown");
+            if (sizeUpDown?.Value != null)
+            {
+                preview.FontSize = Math.Clamp((double)sizeUpDown.Value.Value, 10, 32);
+            }
+
+            var chkBold = this.FindControl<CheckBox>("ChkBold");
+            preview.FontWeight = chkBold?.IsChecked == true ? FontWeight.Bold : FontWeight.Normal;
+
+            var chkItalic = this.FindControl<CheckBox>("ChkItalic");
+            preview.FontStyle = chkItalic?.IsChecked == true ? FontStyle.Italic : FontStyle.Normal;
+
+            var colorBorder = this.FindControl<Border>("SelectedColorPreview");
+            if (_hasExplicitColor && _selectedColor != null)
+            {
+                preview.Foreground = _selectedColor;
+                if (colorBorder != null) colorBorder.Background = _selectedColor;
+            }
+            else
+            {
+                preview.ClearValue(TextBlock.ForegroundProperty);
+                if (colorBorder != null) colorBorder.Background = Brushes.Transparent;
             }
         }
 
@@ -78,7 +173,6 @@ namespace AnimeNotepad.Views.FontColor
             var fontSizeUpDown = this.FindControl<NumericUpDown>("FontSizeUpDown");
             var chkBold = this.FindControl<CheckBox>("ChkBold");
             var chkItalic = this.FindControl<CheckBox>("ChkItalic");
-            var chkUnderline = this.FindControl<CheckBox>("ChkUnderline");
 
             Result = new FontColorDialogResult
             {
@@ -86,8 +180,8 @@ namespace AnimeNotepad.Views.FontColor
                 FontSize = fontSizeUpDown != null ? (double)(fontSizeUpDown.Value ?? 14) : 14,
                 FontWeight = chkBold?.IsChecked == true ? FontWeight.Bold : FontWeight.Normal,
                 FontStyle = chkItalic?.IsChecked == true ? FontStyle.Italic : FontStyle.Normal,
-                TextDecorations = chkUnderline?.IsChecked == true ? Avalonia.Media.TextDecorations.Underline : null,
-                Foreground = _selectedColor
+                Foreground = _selectedColor,
+                ColorChanged = _hasExplicitColor
             };
 
             Close(Result);
