@@ -1,0 +1,25 @@
+Privacy Policy for AnimeNotepad
+
+Last Updated: September 2, 2026
+
+1. Introduction
+Thank you for using AnimeNotepad ("the Application"). AnimeNotepad is an anime-themed desktop notepad application, developed by EsMeSolutions (RichyKunBv). 
+This Privacy Policy explains our approach to any information you provide or that is generated when using the Application.
+
+2. Data Collection and Usage
+AnimeNotepad is a completely offline, local desktop application. 
+- We DO NOT collect, store, transmit, or share any personal information.
+- We DO NOT use telemetry, trackers, or analytics of any kind.
+- We DO NOT transmit any text files, notes, documents, or personal data to our servers or any third parties.
+
+3. Local Access and File Handling
+The Application only accesses local files and directories on your device that you explicitly choose to open, edit, or save. All text editing, processing, and file saving happen strictly locally on your machine.
+
+4. Network Access
+AnimeNotepad does not require or use an internet connection. The application operates entirely offline and does not send or receive any data over the network.
+
+5. Changes to This Policy
+Since the Application does not collect data, this policy is unlikely to change significantly. However, if we introduce online features in the future, this document will be updated accordingly.
+
+6. Contact
+If you have any questions or concerns regarding this Privacy Policy or the Application, please contact us through the official GitHub repository: https://github.com/RichyKunBv/AnimeNotepad
