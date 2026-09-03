@@ -45,10 +45,21 @@ if [ -d "$ubicacion" ]; then
     cd "$ubicacion"
 fi
 
-descargar() {
-    echo "Obteniendo últimos cambios del repositorio..."
+check_branch() {
+    local current=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+    if [ "$current" = "HEAD" ]; then
+        echo "⚠️  ADVERTENCIA: No estás en una rama válida (Estás en 'detached HEAD' o atascado en un rebase)."
+        echo "Por favor, soluciona esto o usa la opción 3 para cambiar a una rama válida (ej. main) antes de actualizar."
+        return 1
+    fi
+    return 0
+}
 
-    if git pull origin main --rebase; then
+descargar() {
+    check_branch || return
+    echo "Obteniendo últimos cambios del repositorio..."
+    local branch=$(git rev-parse --abbrev-ref HEAD)
+    if git pull origin "$branch" --rebase; then
         echo "Actualización exitosa."
     else
         echo "Error al obtener los cambios. Revisa tu conexión o posibles conflictos."
@@ -56,24 +67,26 @@ descargar() {
 }
 
 publicar() {
-    if [ -z "$(git status --porcelain)" ]; then
-        echo "No hay cambios para publicar. Ya está actualizado."
-        return
+    check_branch || return
+    
+    if [ -n "$(git status --porcelain)" ]; then
+        git add .
+        read -e -p "   >> Introduce el mensaje del commit: " mensaje
+
+        if [ -z "$mensaje" ]; then
+            echo "El mensaje no puede estar vacío. Cancelando publicación..."
+            return
+        fi
+
+        git commit -m "$mensaje"
+    else
+        echo "El código ya está empaquetado (commit). Intentando subir a la nube..."
     fi
 
-    git add .
-    read -p "   >> Introduce el mensaje del commit: " mensaje
+    local branch=$(git rev-parse --abbrev-ref HEAD)
+    git pull origin "$branch" --rebase
 
-    if [ -z "$mensaje" ]; then
-        echo "El mensaje no puede estar vacío. Cancelando publicación..."
-        return
-    fi
-
-    git commit -m "$mensaje"
-
-    git pull origin main --rebase
-
-    if git push origin main; then
+    if git push origin "$branch"; then
         echo "Publicación exitosa."
     else
         echo "Error al publicar. Revisa el mensaje de error y vuelve a intentarlo."
@@ -115,6 +128,77 @@ clonar() {
     echo -e "\nClonando el repositorio en $repos_base..."
     cd "$repos_base" || return
     git clone "$repo_url" "$nombre"
+    cd "$ubicacion" || return
+}
+
+cambiar_rama() {
+    if [ ! -d "$ubicacion/.git" ]; then
+        echo "El repositorio no ha sido clonado todavía."
+        return
+    fi
+    
+    cd "$ubicacion" || return
+
+    echo -e "\nRamas disponibles:"
+    git --no-pager branch -a || true
+    echo ""
+    read -e -p "   >> Introduce el nombre de la rama: " nueva_rama
+    
+    if [ -n "$nueva_rama" ]; then
+        if git checkout "$nueva_rama"; then
+            echo "Rama cambiada a $nueva_rama exitosamente."
+        else
+            echo "Error al cambiar de rama. Verifica el nombre."
+        fi
+    else
+        echo "Operación cancelada."
+    fi
+}
+
+solucionar_errores() {
+    clear
+    echo "=== Mini Solucionador de Errores Git ==="
+    echo "Selecciona el problema que quieres resolver:"
+    echo "  1) Estoy atascado actualizando (Cancelar Rebase/Merge y volver atrás)"
+    echo "  2) Quiero deshacer todos mis cambios locales y limpiar"
+    echo "  3) Mis archivos bloquean una actualización (Guardar cambios y Abortar)"
+    echo "  4) Ya resolví los conflictos de código a mano (Continuar actualización)"
+    echo "  X) Volver al menú principal"
+    read -e -p "   >> Introduce tu elección: " err_choice
+    echo ""
+
+    case "$err_choice" in
+        1)
+            git rebase --abort 2>/dev/null || echo "No había rebase en progreso."
+            git merge --abort 2>/dev/null || echo "No había merge en progreso."
+            echo "Hecho."
+            ;;
+        2)
+            read -e -p "¿Estás seguro? Perderás TODO el trabajo no guardado. (s/n): " confirm
+            if [[ "$confirm" == "s" || "$confirm" == "S" ]]; then
+                git reset --hard HEAD
+                git clean -fd
+                echo "Cambios descartados y repositorio limpio."
+            else
+                echo "Operación cancelada."
+            fi
+            ;;
+        3)
+            git add .
+            git stash
+            git rebase --abort 2>/dev/null || true
+            echo "Archivos guardados en el 'stash' y rebase cancelado."
+            ;;
+        4)
+            echo "Marcando archivos como resueltos y continuando..."
+            git add .
+            GIT_EDITOR=true git rebase --continue 2>/dev/null || echo "No había rebase pendiente."
+            GIT_EDITOR=true git merge --continue 2>/dev/null || true
+            echo "¡Listo! Proceso continuado."
+            ;;
+        X|x) return ;;
+        *) echo "Opción inválida." ;;
+    esac
 }
 
 press_any_key() {
@@ -124,17 +208,28 @@ press_any_key() {
 
 show_menu() {
     clear
+    local current_branch="Ninguna"
+    if [ -d "$ubicacion/.git" ]; then
+        cd "$ubicacion" || return
+        current_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "Desconocida")
+    fi
+    
+    echo -e "=== Repo: $nombre | Rama: $current_branch ==="
     echo -e "   1) Actualizar local (Pull)"
     echo -e "   2) Actualizar el repo (Push)"
+    echo -e "   3) Cambiar rama"
+    echo -e "   4) Mini Solucionador de Errores"
     echo -e "   0) Configurar"
     echo -e "   9) Clonar"
     echo -e "   X) Salir"
-    read -p "   >> Introduce tu elección: " choice
+    read -e -p "   >> Introduce tu elección: " choice
     echo ""
 
     case "$choice" in
         1) descargar; press_any_key ;;
         2) publicar; press_any_key ;;
+        3) cambiar_rama; press_any_key ;;
+        4) solucionar_errores; press_any_key ;;
         0) configurar; press_any_key ;;
         9) clonar; press_any_key ;;
         X|x) echo "Saliendo... ¡Hasta pronto!"; exit 0 ;;
