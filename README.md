@@ -7,9 +7,25 @@
 [![Lenguaje](https://img.shields.io/badge/Lenguaje-C%23.NET-lightgrey.svg)](https://dotnet.microsoft.com/es-es/download/dotnet/10.0)
 [![GUI](https://img.shields.io/badge/GUI-Avalonia%20UI-purple.svg)](https://avaloniaui.net)
 
-![Linux](https://img.shields.io/badge/Linux-000000?style=for-the-badge&logo=linux&logoColor=white)
-![Windows](https://img.shields.io/badge/Windows-000000?style=for-the-badge&logo=windows&logoColor=white)
-![macOS](https://img.shields.io/badge/macOS-000000?style=for-the-badge&logo=apple&logoColor=white)
+---
+![Versión](https://img.shields.io/badge/Versión%20Beta-v2.2.0-red.svg)
+![Status](https://img.shields.io/badge/Estado-Unstable-red.svg)
+![Instalación](https://img.shields.io/badge/Instalación-Clonar%20y%20compilar-black.svg)
+---
+
+### Descargar para:
+
+| ![Windows](https://img.shields.io/badge/Windows-000000?style=for-the-badge&logo=windows&logoColor=white) | ![macOS](https://img.shields.io/badge/macOS-000000?style=for-the-badge&logo=apple&logoColor=white) | ![Linux](https://img.shields.io/badge/Linux-000000?style=for-the-badge&logo=linux&logoColor=white) |
+| :---: | :---: | :---: |
+| [![Windows ARM](https://img.shields.io/badge/Windows%20ARM-000000?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/RichyKunBv/AnimeNotepad/releases/latest/download/AnimeNotepad-arm64.exe) | [![macOS ARM](https://img.shields.io/badge/macOS%20ARM-000000?style=for-the-badge&logoColor=white)](https://github.com/RichyKunBv/AnimeNotepad/releases/latest/download/AnimeNotepad-arm64.dmg) | [![Linux ARM](https://img.shields.io/badge/Linux%20ARM-000000?style=for-the-badge&logoColor=white)](https://github.com/RichyKunBv/AnimeNotepad/releases/latest/download/AnimeNotepad-arm64.AppImage) |
+| [![Windows X64](https://img.shields.io/badge/Windows%20X64-000000?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/RichyKunBv/AnimeNotepad/releases/latest/download/AnimeNotepad-x64.exe) | [![macOS X64](https://img.shields.io/badge/macOS%20X64-000000?style=for-the-badge&logoColor=white)](https://github.com/RichyKunBv/AnimeNotepad/releases/latest/download/AnimeNotepad-x64.dmg) | [![Linux X64](https://img.shields.io/badge/Linux%20X64-000000?style=for-the-badge&logoColor=white)](https://github.com/RichyKunBv/AnimeNotepad/releases/latest/download/AnimeNotepad-x64.AppImage) |
+
+### Distribuido en:
+[![Descargar desde GitHub](https://img.shields.io/badge/Descargar-desde%20GitHub-black.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases/latest)
+
+[![Descargar desde Microsoft Store](https://img.shields.io/badge/Descargar-desde%20Microsoft%20Store-%23E6E6E6)](https://apps.microsoft.com/detail/9NVXT5L0DP8S)
+
+[![Descargar desde Itch](https://img.shields.io/badge/Descargar-desde%20Itch-%23fa5c5c)](https://ricoc.itch.io/animenotepad)
 
 <img width="664" alt="Main" src="res/docs/Principal.png" />
 
