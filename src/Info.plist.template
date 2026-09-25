@@ -20,5 +20,22 @@
     <true/>
     <key>LSMinimumSystemVersion</key>
     <string>10.15</string>
+    <key>CFBundleDocumentTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeName</key>
+            <string>AnimeNotepad encrypted note</string>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>LSItemContentTypes</key>
+            <array>
+                <string>com.esmesolutions.animenotepad.uwu</string>
+            </array>
+            <key>CFBundleTypeExtensions</key>
+            <array>
+                <string>uwu</string>
+            </array>
+        </dict>
+    </array>
 </dict>
 </plist>

@@ -7,5 +7,6 @@ Exec=AnimeNotepad
 Icon=AnimeNotepad
 Terminal=false
 Categories=Utility;TextEditor;
-MimeType=text/plain;
+MimeType=text/plain;application/x-animenotepad-uwu;
+X-MimeType=application/x-animenotepad-uwu;
 StartupNotify=true

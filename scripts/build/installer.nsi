@@ -41,6 +41,12 @@ Section "Instalación" SecInstall
     
     ; Crear acceso directo en el Escritorio
     CreateShortcut "$DESKTOP\AnimeNotepad.lnk" "$INSTDIR\AnimeNotepad.exe"
+
+    ; Asociar archivos .uwu para abrirlos desde el Explorador de Windows
+    WriteRegStr HKLM "Software\Classes\.uwu" "" "AnimeNotepad.UwuFile"
+    WriteRegStr HKLM "Software\Classes\AnimeNotepad.UwuFile" "" "AnimeNotepad encrypted note"
+    WriteRegStr HKLM "Software\Classes\AnimeNotepad.UwuFile\DefaultIcon" "" "$INSTDIR\AnimeNotepad.exe,0"
+    WriteRegStr HKLM "Software\Classes\AnimeNotepad.UwuFile\shell\open\command" "" '"$INSTDIR\AnimeNotepad.exe" "%1"'
     
     ; Registrar para desinstalar en Panel de Control
     WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnimeNotepad" "DisplayName" "AnimeNotepad"
@@ -58,6 +64,8 @@ Section "Uninstall"
     Delete "$SMPROGRAMS\AnimeNotepad\AnimeNotepad.lnk"
     RMDir "$SMPROGRAMS\AnimeNotepad"
     Delete "$DESKTOP\AnimeNotepad.lnk"
+    DeleteRegKey HKLM "Software\Classes\.uwu"
+    DeleteRegKey HKLM "Software\Classes\AnimeNotepad.UwuFile"
     
     ; Eliminar registro
     DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\AnimeNotepad"

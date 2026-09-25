@@ -1,6 +1,6 @@
 # AnimeNotepad - Notepad con Temática de Anime
 
-[![Versión](https://img.shields.io/badge/Versión-2.2.1-blue.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases)
+[![Versión](https://img.shields.io/badge/Versión-2.3.0-blue.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases)
 [![Codename](https://img.shields.io/badge/Codename-Strelizia-ff69b4.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases/latest)
 [![Estable](https://img.shields.io/badge/Estado-Estable-red.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases/latest)
 [![Licencia](https://img.shields.io/badge/Licencia-Apache-green.svg)](https://github.com/RichyKunBv/AnimeNotepad/blob/main/LICENSE)
@@ -8,7 +8,7 @@
 [![GUI](https://img.shields.io/badge/GUI-Avalonia%20UI-purple.svg)](https://avaloniaui.net)
 
 ---
-![Versión](https://img.shields.io/badge/Versión%20Beta-v2.2.1-red.svg)
+![Versión](https://img.shields.io/badge/Versión%20Beta-v2.3.0-red.svg)
 ![Status](https://img.shields.io/badge/Estado-Unstable-red.svg)
 ![Instalación](https://img.shields.io/badge/Instalación-Clonar%20y%20compilar-black.svg)
 ---
@@ -38,6 +38,8 @@ Una sencilla pero divertida aplicación de bloc de notas multiplataforma, con un
 ## ✨ Características
 
 * **Edición de texto completa:** Todas las funcionalidades que esperas de un bloc de notas (abrir, guardar, guardar como, cortar, copiar, pegar, deshacer, rehacer y seleccionar todo).
+* **Archivos cifrados `.uwu`:** Crea, abre, edita y guarda notas protegidas con contraseña mediante cifrado autenticado AES-GCM y derivación de clave PBKDF2.
+* **Integración con el sistema:** Los archivos `.uwu` se pueden abrir con doble clic desde el Explorador de Windows, Finder o el gestor de archivos de Linux cuando la aplicación está instalada con su paquete correspondiente.
 * **Prevención de pérdida de datos:** Detección de cambios sin guardar (`*`), confirmación inteligente antes de cerrar o abrir un nuevo documento.
 * **Barra de estado en tiempo real:** Conteo dinámico de líneas, caracteres totales, posición exacta del cursor (Línea / Columna), estado de guardado y codificación UTF-8.
 * **Atajos de teclado nativos:** Soporte completo de combinaciones de teclas estándar (`Ctrl+N`, `Ctrl+O`, `Ctrl+S`, `Ctrl+Shift+S`, `Ctrl+Z`, `Ctrl+Y`, `Ctrl+P`, etc.).
@@ -49,6 +51,25 @@ Una sencilla pero divertida aplicación de bloc de notas multiplataforma, con un
 * **Impresión:** Envía tus notas directamente a la cola de impresión de tu sistema operativo.
 * **Modo Claro y Modo Oscuro:** Adaptación automática al tema de tu sistema operativo, garantizando legibilidad óptima.
 * **Interfaz temática:** Detalles visuales y animación inspirados en el anime (Zero Two).
+
+## 🔐 Archivos cifrados `.uwu`
+
+Los archivos `.uwu` son notas de AnimeNotepad protegidas con contraseña.
+
+1. Escribe o abre una nota y selecciona **Archivo > Guardar como...**.
+2. Elige **Archivo cifrado (`*.uwu`)** y escribe una contraseña.
+3. Para abrirla, usa **Archivo > Abrir...** o haz doble clic en el archivo `.uwu`.
+4. Introduce la misma contraseña para editar la nota. Al guardar, AnimeNotepad vuelve a cifrar el contenido automáticamente.
+
+La contraseña no se guarda en el archivo ni se envía a Internet. Si se pierde, el contenido no se puede recuperar. Cambiar la extensión del archivo no convierte un archivo de texto en un `.uwu` válido.
+
+## 📌 Novedades de la versión 2.3.0
+
+* Nuevo formato de notas cifradas `.uwu`.
+* Contraseña solicitada al crear y abrir notas cifradas.
+* Guardado normal de cambios en documentos `.uwu` durante la sesión.
+* Apertura mediante doble clic y asociación del tipo de archivo en los paquetes de escritorio.
+* Actualización de la documentación y del número de versión.
 
 
 ## 🖼️ Capturas de Pantalla

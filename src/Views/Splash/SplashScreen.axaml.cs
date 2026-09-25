@@ -47,7 +47,7 @@ public partial class SplashScreen : Window
         _transitioned = true;
         _timer.Stop();
 
-        var mainWindow = new MainWindow();
+        var mainWindow = new MainWindow(Program.InitialFilePath);
         if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             desktop.MainWindow = mainWindow;

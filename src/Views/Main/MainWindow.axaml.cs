@@ -9,9 +9,11 @@ using Avalonia.Platform.Storage;
 using Avalonia.Media;
 using Avalonia.Layout;
 
+using AnimeNotepad.Services;
 using AnimeNotepad.Views.About;
 using AnimeNotepad.Views.FontColor;
 using AnimeNotepad.Views.Manual;
+using AnimeNotepad.Views.Password;
 using AnimeNotepad.Views.Print;
 
 namespace AnimeNotepad.Views.Main;
@@ -19,11 +21,16 @@ namespace AnimeNotepad.Views.Main;
 public partial class MainWindow : Window
 {
     private string? _currentFilePath = null;
+    private string? _currentPassword = null;
     private bool _isModified = false;
     private bool _isInitializing = true;
     private double _zoomLevel = 14;
 
-    public MainWindow()
+    public MainWindow() : this(null)
+    {
+    }
+
+    public MainWindow(string? initialFilePath = null)
     {
         InitializeComponent();
 
@@ -38,6 +45,11 @@ public partial class MainWindow : Window
         UpdateTitleAndStatus();
         UpdateCaretPosition();
         _isInitializing = false;
+
+        if (!string.IsNullOrEmpty(initialFilePath))
+        {
+            _ = OpenPathAsync(initialFilePath);
+        }
     }
 
     private void EditorTextBox_TextChanged(object? sender, TextChangedEventArgs e)
@@ -127,6 +139,7 @@ public partial class MainWindow : Window
         _isInitializing = true;
         EditorTextBox.Text = string.Empty;
         _currentFilePath = null;
+        _currentPassword = null;
         _isModified = false;
         _isInitializing = false;
 
@@ -154,33 +167,12 @@ public partial class MainWindow : Window
             AllowMultiple = false,
             FileTypeFilter = new[]
             {
-                new FilePickerFileType("Documentos de texto (*.txt)") { Patterns = new[] { "*.txt" } },
+                new FilePickerFileType("Archivos AnimeNotepad (*.txt, *.uwu)") { Patterns = new[] { "*.txt", "*.uwu" } },
                 new FilePickerFileType("Todos los archivos (*.*)") { Patterns = new[] { "*.*" } }
             }
         });
 
-        if (files.Count >= 1)
-        {
-            try
-            {
-                using var stream = await files[0].OpenReadAsync();
-                using var reader = new StreamReader(stream, Encoding.UTF8, detectEncodingFromByteOrderMarks: true);
-                string content = await reader.ReadToEndAsync();
-
-                _isInitializing = true;
-                EditorTextBox.Text = content;
-                _currentFilePath = files[0].Path.LocalPath;
-                _isModified = false;
-                _isInitializing = false;
-
-                UpdateTitleAndStatus();
-                UpdateCaretPosition();
-            }
-            catch (Exception ex)
-            {
-                await ShowMessageAsync("Error al abrir", $"No se pudo abrir el archivo:\n{ex.Message}");
-            }
-        }
+        if (files.Count >= 1) await OpenPathAsync(files[0].Path.LocalPath);
     }
 
     private async void MenuSave_Click(object? sender, RoutedEventArgs e)
@@ -202,7 +194,15 @@ public partial class MainWindow : Window
 
         try
         {
-            await File.WriteAllTextAsync(_currentFilePath, EditorTextBox.Text ?? string.Empty, Encoding.UTF8);
+            if (IsUwuPath(_currentFilePath))
+            {
+                if (_currentPassword == null) return false;
+                await File.WriteAllBytesAsync(_currentFilePath, UwuFileService.Encrypt(EditorTextBox.Text ?? string.Empty, _currentPassword));
+            }
+            else
+            {
+                await File.WriteAllTextAsync(_currentFilePath, EditorTextBox.Text ?? string.Empty, Encoding.UTF8);
+            }
             _isModified = false;
             UpdateTitleAndStatus();
             return true;
@@ -229,6 +229,7 @@ public partial class MainWindow : Window
             FileTypeChoices = new[]
             {
                 new FilePickerFileType("Documentos de texto (*.txt)") { Patterns = new[] { "*.txt" } },
+                new FilePickerFileType("Archivo cifrado (*.uwu)") { Patterns = new[] { "*.uwu" } },
                 new FilePickerFileType("Todos los archivos (*.*)") { Patterns = new[] { "*.*" } }
             }
         });
@@ -237,11 +238,21 @@ public partial class MainWindow : Window
         {
             try
             {
-                using var stream = await file.OpenWriteAsync();
-                using var writer = new StreamWriter(stream, Encoding.UTF8);
-                await writer.WriteAsync(EditorTextBox.Text ?? string.Empty);
+                string path = file.Path.LocalPath;
+                if (IsUwuPath(path))
+                {
+                    string? password = await AskPasswordAsync("Escribe una contraseña para proteger el archivo .uwu:");
+                    if (password == null) return false;
+                    await File.WriteAllBytesAsync(path, UwuFileService.Encrypt(EditorTextBox.Text ?? string.Empty, password));
+                    _currentPassword = password;
+                }
+                else
+                {
+                    await File.WriteAllTextAsync(path, EditorTextBox.Text ?? string.Empty, Encoding.UTF8);
+                    _currentPassword = null;
+                }
 
-                _currentFilePath = file.Path.LocalPath;
+                _currentFilePath = path;
                 _isModified = false;
                 UpdateTitleAndStatus();
                 return true;
@@ -253,6 +264,48 @@ public partial class MainWindow : Window
         }
         return false;
     }
+
+    private async Task OpenPathAsync(string path)
+    {
+        try
+        {
+            string content;
+            if (IsUwuPath(path))
+            {
+                string? password = await AskPasswordAsync("Escribe la contraseña del archivo .uwu:");
+                if (password == null) return;
+                await using var encryptedStream = File.OpenRead(path);
+                content = UwuFileService.Decrypt(encryptedStream, password);
+                _currentPassword = password;
+            }
+            else
+            {
+                content = await File.ReadAllTextAsync(path, Encoding.UTF8);
+                _currentPassword = null;
+            }
+
+            _isInitializing = true;
+            EditorTextBox.Text = content;
+            _currentFilePath = path;
+            _isModified = false;
+            _isInitializing = false;
+            UpdateTitleAndStatus();
+            UpdateCaretPosition();
+        }
+        catch (Exception ex)
+        {
+            await ShowMessageAsync("Error al abrir", $"No se pudo abrir el archivo:\n{ex.Message}");
+        }
+    }
+
+    private async Task<string?> AskPasswordAsync(string prompt)
+    {
+        var dialog = new PasswordWindow(prompt);
+        var result = await dialog.ShowDialog<bool?>(this);
+        return result == true ? dialog.Password : null;
+    }
+
+    private static bool IsUwuPath(string path) => string.Equals(Path.GetExtension(path), ".uwu", StringComparison.OrdinalIgnoreCase);
 
     private async void Window_Closing(object? sender, WindowClosingEventArgs e)
     {

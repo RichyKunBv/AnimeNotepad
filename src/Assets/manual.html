@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual de Bloc de Notas</title>
+    <title>Manual de AnimeNotepad 2.3.0</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; }
         h1 { color: #333; }
@@ -11,19 +11,29 @@
     </style>
 </head>
 <body>
-    <h1>Manual de Bloc de Notas</h1>
-    <p>Bienvenido al manual de usuario.</p>
+    <h1>Manual de AnimeNotepad</h1>
+    <p>Guía rápida para AnimeNotepad 2.3.0.</p>
     <h2>Funciones Básicas</h2>
     <ul>
         <li><strong>Nuevo:</strong> Crea un documento en blanco.</li>
-        <li><strong>Abrir:</strong> Carga un archivo de texto.</li>
-        <li><strong>Guardar:</strong> Guarda el contenido actual.</li>
+        <li><strong>Abrir:</strong> Carga un archivo de texto o una nota cifrada <code>.uwu</code>.</li>
+        <li><strong>Guardar:</strong> Guarda el contenido actual en texto plano o vuelve a cifrar una nota <code>.uwu</code>.</li>
+        <li><strong>Guardar como:</strong> Permite elegir entre un archivo de texto <code>.txt</code> y un archivo cifrado <code>.uwu</code>.</li>
     </ul>
+    <h2>Notas cifradas .uwu</h2>
+    <p>El formato <code>.uwu</code> protege el contenido mediante AES-GCM y una contraseña. Para crear una nota cifrada, usa <strong>Archivo &gt; Guardar como...</strong>, elige <strong>Archivo cifrado (*.uwu)</strong> y escribe una contraseña.</p>
+    <p>Para abrirla, selecciona <strong>Archivo &gt; Abrir...</strong> o haz doble clic en el archivo desde el sistema operativo. AnimeNotepad solicitará la contraseña antes de mostrar el contenido.</p>
+    <p>Mientras la nota cifrada permanece abierta, puedes editarla y usar <strong>Guardar</strong> normalmente. La contraseña se conserva únicamente en memoria durante esa sesión y no se almacena dentro del archivo. Si la olvidas, la nota no se puede recuperar.</p>
+    <h2>Archivos asociados</h2>
+    <p>Las versiones instaladas registran la extensión <code>.uwu</code> para que el sistema operativo la abra con AnimeNotepad mediante doble clic o desde el menú contextual.</p>
     <h2>Atajos de Teclado</h2>
     <ul>
         <li><strong>Ctrl + N:</strong> Nuevo archivo</li>
         <li><strong>Ctrl + S:</strong> Guardar</li>
         <li><strong>Ctrl + O:</strong> Abrir archivo</li>
+        <li><strong>Ctrl + Shift + S:</strong> Guardar como</li>
+        <li><strong>Ctrl + Z:</strong> Deshacer</li>
+        <li><strong>Ctrl + Y:</strong> Rehacer</li>
     </ul>
 </body>
 </html>

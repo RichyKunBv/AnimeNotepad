@@ -40,6 +40,15 @@
         <uap:DefaultTile Wide310x150Logo="Square150x150Logo.png" />
         <uap:SplashScreen Image="SplashScreen.png" />
       </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="uwu" DisplayName="AnimeNotepad encrypted note">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.uwu</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+      </Extensions>
     </Application>
   </Applications>
 </Package>
