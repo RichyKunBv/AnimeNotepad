@@ -42,7 +42,7 @@
       </uap:VisualElements>
       <Extensions>
         <uap:Extension Category="windows.fileTypeAssociation">
-          <uap:FileTypeAssociation Name="uwu" DisplayName="AnimeNotepad encrypted note">
+          <uap:FileTypeAssociation Name="uwu">
             <uap:SupportedFileTypes>
               <uap:FileType>.uwu</uap:FileType>
             </uap:SupportedFileTypes>

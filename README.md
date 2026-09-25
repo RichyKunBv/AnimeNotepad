@@ -1,6 +1,6 @@
 # AnimeNotepad - Notepad con Temática de Anime
 
-[![Versión](https://img.shields.io/badge/Versión-2.3.0-blue.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases)
+[![Versión](https://img.shields.io/badge/Versión-2.3.1-blue.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases)
 [![Codename](https://img.shields.io/badge/Codename-Strelizia-ff69b4.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases/latest)
 [![Estable](https://img.shields.io/badge/Estado-Estable-red.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases/latest)
 [![Licencia](https://img.shields.io/badge/Licencia-Apache-green.svg)](https://github.com/RichyKunBv/AnimeNotepad/blob/main/LICENSE)
@@ -8,7 +8,7 @@
 [![GUI](https://img.shields.io/badge/GUI-Avalonia%20UI-purple.svg)](https://avaloniaui.net)
 
 ---
-![Versión](https://img.shields.io/badge/Versión%20Beta-v2.3.0-red.svg)
+![Versión](https://img.shields.io/badge/Versión%20Beta-v2.3.1-red.svg)
 ![Status](https://img.shields.io/badge/Estado-Unstable-red.svg)
 ![Instalación](https://img.shields.io/badge/Instalación-Clonar%20y%20compilar-black.svg)
 ---
