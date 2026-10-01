@@ -12,6 +12,7 @@ using Avalonia.Layout;
 using AnimeNotepad.Services;
 using AnimeNotepad.Views.About;
 using AnimeNotepad.Views.FontColor;
+using AnimeNotepad.Views.Logs;
 using AnimeNotepad.Views.Manual;
 using AnimeNotepad.Views.Password;
 using AnimeNotepad.Views.Print;
@@ -24,6 +25,7 @@ public partial class MainWindow : Window
     private string? _currentPassword = null;
     private bool _isModified = false;
     private bool _isInitializing = true;
+    private bool _hasCustomForeground;
     private double _zoomLevel = 14;
 
     public MainWindow() : this(null)
@@ -33,6 +35,7 @@ public partial class MainWindow : Window
     public MainWindow(string? initialFilePath = null)
     {
         InitializeComponent();
+        LoadEditorSettings();
 
         EditorTextBox.PropertyChanged += (s, e) =>
         {
@@ -205,10 +208,12 @@ public partial class MainWindow : Window
             }
             _isModified = false;
             UpdateTitleAndStatus();
+            LogService.Info("Editor", "Documento guardado");
             return true;
         }
         catch (Exception ex)
         {
+            LogService.Error("Editor", "Error al guardar el documento", ex);
             await ShowMessageAsync("Error al guardar", $"No se pudo guardar el archivo:\n{ex.Message}");
             return false;
         }
@@ -255,10 +260,12 @@ public partial class MainWindow : Window
                 _currentFilePath = path;
                 _isModified = false;
                 UpdateTitleAndStatus();
+                LogService.Info("Editor", "Documento guardado");
                 return true;
             }
             catch (Exception ex)
             {
+                LogService.Error("Editor", "Error al guardar el documento", ex);
                 await ShowMessageAsync("Error al guardar", $"No se pudo guardar el archivo:\n{ex.Message}");
             }
         }
@@ -291,9 +298,11 @@ public partial class MainWindow : Window
             _isInitializing = false;
             UpdateTitleAndStatus();
             UpdateCaretPosition();
+            LogService.Info("Editor", "Documento abierto");
         }
         catch (Exception ex)
         {
+            LogService.Error("Editor", "Error al abrir un documento", ex);
             await ShowMessageAsync("Error al abrir", $"No se pudo abrir el archivo:\n{ex.Message}");
         }
     }
@@ -356,7 +365,7 @@ public partial class MainWindow : Window
             EditorTextBox.FontWeight,
             EditorTextBox.FontStyle,
             null,
-            EditorTextBox.Foreground
+            _hasCustomForeground ? EditorTextBox.Foreground : null
         );
         fontWindow.SelectTab(0);
 
@@ -375,7 +384,7 @@ public partial class MainWindow : Window
             EditorTextBox.FontWeight,
             EditorTextBox.FontStyle,
             null,
-            EditorTextBox.Foreground
+            _hasCustomForeground ? EditorTextBox.Foreground : null
         );
         fontWindow.SelectTab(1);
 
@@ -397,11 +406,15 @@ public partial class MainWindow : Window
         if (result.ColorChanged && result.Foreground != null)
         {
             EditorTextBox.Foreground = result.Foreground;
+            _hasCustomForeground = true;
         }
         else if (!result.ColorChanged)
         {
             EditorTextBox.ClearValue(TextBox.ForegroundProperty);
+            _hasCustomForeground = false;
         }
+
+        SaveEditorSettings();
     }
 
     private void MenuZoomIn_Click(object? sender, RoutedEventArgs e)
@@ -411,6 +424,7 @@ public partial class MainWindow : Window
         {
             _zoomLevel += 2;
             EditorTextBox.FontSize = _zoomLevel;
+            SaveEditorSettings();
         }
     }
 
@@ -421,6 +435,7 @@ public partial class MainWindow : Window
         {
             _zoomLevel -= 2;
             EditorTextBox.FontSize = _zoomLevel;
+            SaveEditorSettings();
         }
     }
 
@@ -428,6 +443,46 @@ public partial class MainWindow : Window
     {
         _zoomLevel = 14;
         EditorTextBox.FontSize = _zoomLevel;
+        SaveEditorSettings();
+    }
+
+    private void LoadEditorSettings()
+    {
+        EditorSettings settings = SettingsService.Load();
+        if (!string.IsNullOrWhiteSpace(settings.FontFamily))
+            EditorTextBox.FontFamily = new FontFamily(settings.FontFamily);
+
+        EditorTextBox.FontSize = double.IsFinite(settings.FontSize) ? Math.Clamp(settings.FontSize, 8, 72) : 14;
+        EditorTextBox.FontWeight = settings.IsBold ? FontWeight.Bold : FontWeight.Normal;
+        EditorTextBox.FontStyle = settings.IsItalic ? FontStyle.Italic : FontStyle.Normal;
+        if (!string.IsNullOrWhiteSpace(settings.Foreground))
+        {
+            try
+            {
+                EditorTextBox.Foreground = new SolidColorBrush(Color.Parse(settings.Foreground));
+                _hasCustomForeground = true;
+            }
+            catch (FormatException ex)
+            {
+                LogService.Warn("SettingsService", "El color guardado no es válido", ex);
+            }
+        }
+        _zoomLevel = EditorTextBox.FontSize;
+    }
+
+    private void SaveEditorSettings()
+    {
+        string? color = _hasCustomForeground && EditorTextBox.Foreground is ISolidColorBrush brush
+            ? brush.Color.ToString()
+            : null;
+        SettingsService.Save(new EditorSettings
+        {
+            FontFamily = EditorTextBox.FontFamily?.Name,
+            FontSize = EditorTextBox.FontSize,
+            IsBold = EditorTextBox.FontWeight == FontWeight.Bold,
+            IsItalic = EditorTextBox.FontStyle == FontStyle.Italic,
+            Foreground = color
+        });
     }
 
     private async void MenuPrint_Click(object? sender, RoutedEventArgs e)
@@ -494,6 +549,12 @@ public partial class MainWindow : Window
     {
         var aboutWindow = new AboutWindow();
         await aboutWindow.ShowDialog(this);
+    }
+
+    private async void MenuLogs_Click(object? sender, RoutedEventArgs e)
+    {
+        var logsWindow = new LogsWindow();
+        await logsWindow.ShowDialog(this);
     }
 
     private async void MenuCheckUpdates_Click(object? sender, RoutedEventArgs e)

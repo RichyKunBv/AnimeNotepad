@@ -109,6 +109,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="_Buscar actualizaciones" Click="MenuCheckUpdates_Click"/>
+                <MenuItem Header="_Registro de actividad" Click="MenuLogs_Click"/>
                 <Separator/>
                 <MenuItem Header="_Acerca de" Click="MenuAbout_Click">
                     <MenuItem.Icon>

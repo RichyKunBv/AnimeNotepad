@@ -1,5 +1,7 @@
 ﻿using Avalonia;
 using System;
+using System.Threading.Tasks;
+using AnimeNotepad.Services;
 
 namespace AnimeNotepad;
 
@@ -13,6 +15,14 @@ class Program
     [STAThread]
     public static void Main(string[] args)
     {
+        AppDomain.CurrentDomain.UnhandledException += (_, eventArgs) =>
+            LogService.Error("UnhandledException", "Excepción no controlada", eventArgs.ExceptionObject as Exception);
+        TaskScheduler.UnobservedTaskException += (_, eventArgs) =>
+        {
+            LogService.Error("UnobservedTaskException", "Excepción de tarea no observada", eventArgs.Exception);
+            eventArgs.SetObserved();
+        };
+
         InitialFilePath = args.Length > 0 && !string.IsNullOrWhiteSpace(args[0]) ? args[0] : null;
         BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
     }

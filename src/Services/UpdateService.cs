@@ -51,7 +51,7 @@ public static class UpdateService
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[UpdateChecker] Error checking for updates: {ex.Message}");
+            LogService.Warn("UpdateChecker", "No se pudieron comprobar las actualizaciones", ex);
         }
         return (UpdateStatus.Error, null);
     }

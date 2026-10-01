@@ -1,0 +1,45 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="AnimeNotepad.Views.Logs.LogsWindow"
+        Title="Registro y reporte de errores"
+        Width="760" Height="540"
+        MinWidth="560" MinHeight="400"
+        WindowStartupLocation="CenterOwner"
+        Icon="avares://AnimeNotepad/Assets/icon.ico">
+    <Grid RowDefinitions="Auto,*,Auto" Margin="16">
+        <Grid Grid.Row="0" RowDefinitions="Auto,Auto" Margin="0,0,0,10">
+            <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,10">
+                <StackPanel>
+                    <TextBlock Text="Registro de actividad" FontSize="18" FontWeight="Bold" />
+                    <TextBlock Text="Eventos y errores de AnimeNotepad" FontSize="12" Opacity="0.7" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="6">
+                    <Button Content="Copiar" Click="Copy_Click" />
+                    <Button Content="Abrir carpeta" Click="OpenFolder_Click" />
+                    <Button Content="Limpiar" Click="Clear_Click" />
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" ColumnDefinitions="*,Auto">
+                <TextBox Name="FilterBox" PlaceholderText="Filtrar por texto, origen o nivel..." TextChanged="Filter_Changed" />
+                <TextBlock Name="StatsText" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0" />
+            </Grid>
+        </Grid>
+
+        <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Padding="6">
+            <TextBox Name="LogsTextBox" IsReadOnly="True" AcceptsReturn="True"
+                     TextWrapping="NoWrap" FontFamily="monospace" FontSize="11"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     ScrollViewer.HorizontalScrollBarVisibility="Auto" />
+        </Border>
+
+        <Grid Grid.Row="2" ColumnDefinitions="*,Auto,Auto,Auto" Margin="0,10,0,0">
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="¿Encontraste un problema?" FontWeight="SemiBold" />
+                <TextBlock Text="Puedes incluir los registros en tu reporte." FontSize="11" Opacity="0.7" />
+            </StackPanel>
+            <Button Grid.Column="1" Content="GitHub Issues" Click="ReportGitHub_Click" Margin="6,0" />
+            <Button Grid.Column="2" Content="Enviar correo" Click="ReportEmail_Click" Margin="6,0" />
+            <Button Grid.Column="3" Content="Cerrar" Click="Close_Click" Margin="6,0,0,0" />
+        </Grid>
+    </Grid>
+</Window>
