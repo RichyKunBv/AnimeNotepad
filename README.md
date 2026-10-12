@@ -3,7 +3,7 @@
 [![Versión](https://img.shields.io/badge/Versión-2.4.0-blue.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases)
 [![Codename](https://img.shields.io/badge/Codename-Strelizia-ff69b4.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases/latest)
 [![Estable](https://img.shields.io/badge/Estado-Estable-red.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases/latest)
-[![Licencia](https://img.shields.io/badge/Licencia-Apache-green.svg)](https://github.com/RichyKunBv/AnimeNotepad/blob/main/LICENSE)
+
 [![Lenguaje](https://img.shields.io/badge/Lenguaje-C%23.NET-lightgrey.svg)](https://dotnet.microsoft.com/es-es/download/dotnet/10.0)
 [![GUI](https://img.shields.io/badge/GUI-Avalonia%20UI-purple.svg)](https://avaloniaui.net)
 
@@ -130,4 +130,14 @@ Para la creación y empaquetado de la aplicación, dispones de scripts automatiz
 ## 👤 Autor
 
 * **RichyKunBv** - [GitHub](https://github.com/RichyKunBv)
+
+
+---
+# Politica de Privacidad, Actualizaciones y Licencias
+
+[![PoliticaPriv](https://img.shields.io/badge/Politica%20de%20Privacidad-lightgrey.svg)](https://github.com/RichyKunBv/RichyKunBv/blob/main/politicas/priv.md)
+
+[![PoliticaAct](https://img.shields.io/badge/Politica%20de%20Actualizaciones-lightgrey.svg)](https://github.com/RichyKunBv/RichyKunBv/blob/main/politicas/act.md)
+
+[![Licencia](https://img.shields.io/badge/Licencia%20Apache-lightgrey.svg)](https://github.com/RichyKunBv/AnimeNotepad/blob/main/LICENSE)
 
