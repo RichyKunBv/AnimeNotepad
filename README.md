@@ -1,6 +1,6 @@
 # AnimeNotepad - Notepad con Temática de Anime
 
-[![Versión](https://img.shields.io/badge/Versión-2.4.0-blue.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases)
+[![Versión](https://img.shields.io/badge/Versión-2.4.1-blue.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases)
 [![Codename](https://img.shields.io/badge/Codename-Strelizia-ff69b4.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases/latest)
 [![Estable](https://img.shields.io/badge/Estado-Estable-red.svg)](https://github.com/RichyKunBv/AnimeNotepad/releases/latest)
 
