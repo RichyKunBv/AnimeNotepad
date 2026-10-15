@@ -8,7 +8,7 @@
 [![GUI](https://img.shields.io/badge/GUI-Avalonia%20UI-purple.svg)](https://avaloniaui.net)
 
 ---
-![Versión](https://img.shields.io/badge/Versión%20Beta-v2.4.0-red.svg)
+![Versión](https://img.shields.io/badge/Versión%20Beta-v2.4.1-red.svg)
 ![Status](https://img.shields.io/badge/Estado-Unstable-red.svg)
 ![Instalación](https://img.shields.io/badge/Instalación-Clonar%20y%20compilar-black.svg)
 ---

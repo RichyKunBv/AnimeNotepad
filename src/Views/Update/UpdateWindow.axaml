@@ -1,0 +1,57 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="AnimeNotepad.Views.Update.UpdateWindow"
+        Title="Actualizaciones"
+        Width="440" Height="280"
+        CanResize="False"
+        Background="#0F0F0F"
+        WindowStartupLocation="CenterOwner">
+
+    <Grid RowDefinitions="*,Auto,Auto" Margin="20">
+        <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Spacing="12">
+            <TextBlock Name="TxtStatus"
+                       Text="Buscando actualizaciones..."
+                       FontSize="16"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       Foreground="Gray"/>
+            <ProgressBar Name="ProgressDownload" Minimum="0" Maximum="100" Height="8" IsVisible="False"/>
+            <TextBlock Name="TxtProgress"
+                       FontSize="12"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       Foreground="Gray"
+                       IsVisible="False"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Spacing="10"
+                    Margin="0,12,0,12">
+            <Button Name="BtnLatestRelease"
+                    Content="Descargar actualización"
+                    Background="#1B6B3A"
+                    Foreground="White"
+                    Padding="15,8"
+                    IsVisible="False"
+                    Click="BtnLatestRelease_Click"
+                    CornerRadius="4"/>
+            <Button Name="BtnCancelDownload"
+                    Content="Cancelar descarga"
+                    Background="#5A2525"
+                    Foreground="White"
+                    Padding="15,8"
+                    IsVisible="False"
+                    Click="BtnCancelDownload_Click"
+                    CornerRadius="4"/>
+        </StackPanel>
+        <Button Grid.Row="2"
+                Content="Cerrar"
+                HorizontalAlignment="Center"
+                Background="#2A2A2A"
+                Foreground="#CCCCCC"
+                Padding="20,8"
+                Click="BtnClose_Click"
+                CornerRadius="4"/>
+    </Grid>
+</Window>

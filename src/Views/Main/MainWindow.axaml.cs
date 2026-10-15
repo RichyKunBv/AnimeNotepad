@@ -16,6 +16,7 @@ using AnimeNotepad.Views.Logs;
 using AnimeNotepad.Views.Manual;
 using AnimeNotepad.Views.Password;
 using AnimeNotepad.Views.Print;
+using AnimeNotepad.Views.Update;
 
 namespace AnimeNotepad.Views.Main;
 
@@ -559,32 +560,8 @@ public partial class MainWindow : Window
 
     private async void MenuCheckUpdates_Click(object? sender, RoutedEventArgs e)
     {
-        var (status, latestVersion) = await AnimeNotepad.Services.UpdateService.CheckForUpdatesAsync(Verzion.Texto.TrimStart('v', 'V'));
-
-        if (status == AnimeNotepad.Services.UpdateStatus.Outdated)
-        {
-            try
-            {
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
-                {
-                    FileName = AnimeNotepad.Services.UpdateService.GetDirectDownloadUrl(),
-                    UseShellExecute = true
-                });
-                await ShowMessageAsync("Actualización disponible", $"Se ha iniciado la descarga de la nueva versión ({latestVersion}).");
-            }
-            catch
-            {
-                await ShowMessageAsync("Actualización disponible", $"Hay una nueva versión disponible ({latestVersion}).\nVisita el repositorio para descargarla.");
-            }
-        }
-        else if (status == AnimeNotepad.Services.UpdateStatus.UpToDate || status == AnimeNotepad.Services.UpdateStatus.Newer)
-        {
-            await ShowMessageAsync("Actualizaciones", "Ya tienes instalada la versión más reciente.");
-        }
-        else
-        {
-            await ShowMessageAsync("Actualizaciones", "No se pudo verificar la actualización en este momento.");
-        }
+        var updateWindow = new UpdateWindow();
+        await updateWindow.ShowDialog(this);
     }
 
     private Task ShowMessageAsync(string title, string message)
