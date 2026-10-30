@@ -24,11 +24,11 @@ jobs:
             arch: arm64
             rid: win-arm64
             asset_name: AnimeNotepad-arm64.exe
-          - os: ubuntu-latest
+          - os: ubuntu-26.04
             arch: x64
             rid: linux-x64
             asset_name: AnimeNotepad-x64.AppImage
-          - os: ubuntu-latest
+          - os: ubuntu-26.04
             arch: arm64
             rid: linux-arm64
             asset_name: AnimeNotepad-arm64.AppImage
@@ -43,10 +43,10 @@ jobs:
 
     steps:
       - name: Obtener código fuente
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Instalar .NET 10
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '10.0.x'
 
@@ -225,13 +225,13 @@ jobs:
       # --- SUBIR RESULTADO ---
       - name: Subir Archivo a GitHub Releases
         if: github.event_name == 'release'
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: ${{ github.workspace }}/AnimeNotepad*
           
       - name: Subir Artefacto para PR o Manual
         if: github.event_name != 'release'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: installers-${{ matrix.rid }}
           path: ${{ github.workspace }}/AnimeNotepad*
@@ -239,7 +239,7 @@ jobs:
       # 🔹 Debug: Si falla, subimos la carpeta de compilación para inspeccionar
       - name: Subir artefactos de compilación (debug)
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: debug-${{ matrix.rid }}
           path: src/publish_out
